@@ -6,8 +6,8 @@
 
 | 대상 | 공식 자료로 확인한 내용 | HAAR 적용 방향 | 구현 전 확인할 제약 |
 | --- | --- | --- | --- |
-| Paperclip | 작업·실행·checkout 중심의 control plane. 별도 MCP 패키지는 REST API 래퍼 | 작업 상태·실행기록 중심으로 활용 | 기존 설치 미확인, 고정 버전 API·상태·인증 매핑 검증 |
-| Buzz | 사람·AI 채널, CLI·ACP 및 WS/REST 경로. README는 모바일·workflow approval gates 일부를 개발 중으로 표시 | 사람–AI 채널 모듈 활용 | 채널만 떼어도 인증·이벤트·DB·relay 의존성 존재, 승인 완성 가정 금지 |
+| Paperclip | 작업·실행·checkout 중심의 control plane. 별도 MCP 패키지는 REST API 래퍼 | 실제 작업 배정·진행 상태·실행기록 로직을 분석해 재사용하는 방향에 사용자 명시적 동의 | 기존 설치 미확인, 고정 버전 코드·API·상태·인증 매핑 검증 |
+| Buzz | 사람·AI 채널, CLI·ACP 및 WS/REST 경로. README는 모바일·workflow approval gates 일부를 개발 중으로 표시 | 우리 화면에서 선택한 AI에 지시를 전달하고 결과를 받는 대화 계층 | 채널만 떼어도 인증·이벤트·DB·relay 의존성 존재, 승인 완성 가정 금지 |
 | Argo | 공개 문서의 기억·인계·카드·스킬 UX. 공개 GitHub는 설치파일 배포 전용이며 앱 소스 비공개 | 공개 동작을 참고해 독자 구현 | 코드 재사용 금지, 외부 API/MCP 호출 계약 미확인, 직접 연동은 MVP 필수조건 아님 |
 
 위 사실의 공식 근거는 각각 [P-01~P-06](#4-paperclip-공식-근거), [B-01~B-04](#5-buzz-공식-근거), [A-01~A-03](#6-argo-공식-근거)에 연결한다. 아래의 HAAR lease·action 승인·데이터 모델은 독자 설계 제안이며 upstream 기본 동작이라는 주장이 아니다.
@@ -27,6 +27,14 @@
 권고 경계는 `task-core bridge`, `channel bridge`, `execution gateway/adapter`, `SKU·memory·skill·approval 확장`이다. 같은 task.status를 두 DB가 독립적으로 확정하지 않는다. Buzz의 메시지 이벤트 원장과 Paperclip의 작업 원장은 서로 다른 책임을 가진다. HAAR 읽기 투영은 원장·커서로 재구축 가능해야 한다.
 
 MCP 연결과 AI 실행은 별도 계약이다. 도구를 등록하면 해당 AI가 호출할 수 있을 뿐, 기존 GPT/dot 대화와 Mac의 모든 앱이 자동으로 깨지 않는다. 시작·상태 조회·중단·세션 재개를 지원하는 adapter가 있어야 직접 실행을 제공한다. 미지원 도구는 수동 인계로 표시한다.
+
+추가 음성 합의의 개발 대상은 VPS Hermes·OpenCode, Mac의 이름 미확인 DIR 봇·Orca, GPT의 다섯 경로다. adapter 개발도 제품 범위이며 정확한 명칭·호출 계약을 확인해 단계적으로 개발한다. OpenClaw 사용은 미확인이다. 전체 스택을 Rust로 확정하지 않고 기존 Paperclip/Buzz 언어·런타임 재사용과 경량 adapter만 Rust로 작성하는 대안을 [ADR-001](ADR-001-LIGHTWEIGHT-RUNTIME.md)에서 비교한다.
+
+### 2.1 실제 코드 분석·재사용 관문
+
+사용자 합의는 UI 모방이나 개념 참고에 그치지 않는 실제 로직 재사용이다. 구현 전 `server/src/routes/issues.ts`, `server/src/services/issues.ts`, `server/src/services/heartbeat.ts`, `packages/db/src/schema/issues.ts`, `packages/db/src/schema/heartbeat_runs.ts` 등을 출발점으로 배정 명령 → 상태 전이/checkout → run/이벤트 저장 → 복구 경로를 추적한다. 이 경로들은 검토 커밋의 tree에서 존재를 확인한 **추가 분석 대상**이며 이번 문서 작업에서 코드 분석·재사용 구현을 완료했다고 주장하지 않는다.
+
+M0 산출물은 기능별 실제 호출 경로·불변 조건·재사용 단위·HAAR 확장 지점·DB/인증 의존성·라이선스 고지·upstream 업데이트 영향 및 회귀시험의 매핑이다. 배정/상태/기록 로직을 별도 원장으로 중복 구현하는 안은 이 합의와 맞지 않으므로 재사용 경계를 먼저 검증한다.
 
 ## 3. 라이선스·의존성·업데이트 전략 [제안]
 
