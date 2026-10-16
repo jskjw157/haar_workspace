@@ -69,7 +69,7 @@ sequenceDiagram
 
 ## 5. 다섯 route와 프로토콜
 
-route 목록과 미확인 명칭은 PRD 10.1절을 기준으로 한다. 구현 인터페이스는 hello/capabilities, execute, query_run, cancel, event/ACK, artifact 결과, 필요 시 query_external_action으로 나눈다. 지원하지 않는 항목은 false/확인 필요로 신고한다. [adapter 계약](ADAPTER_CONTRACT.md)의 식별자·lease·journal·재연결 규칙을 단일 기준으로 사용한다.
+route 목록은 PRD 10.1절을 기준으로 한다. VPS Hermes·OpenClaw는 사용자 확인 대상이고, Mac COKACDIR는 공식 저장소와 Mac 읽기 조사로 명칭·CLI 실행 경로를 확인했다. COKACDIR의 정확한 버전·세션 연동 API, Orca 제품명·GPT 호출 방식과 나머지 경로의 실제 설치/API 지원은 미검증이다. 구현 인터페이스는 hello/capabilities, execute, query_run, cancel, event/ACK, artifact 결과, 필요 시 query_external_action으로 나눈다. 지원하지 않는 항목은 false/확인 필요로 신고한다. [adapter 계약](ADAPTER_CONTRACT.md)의 식별자·lease·journal·재연결 규칙을 단일 기준으로 사용한다.
 
 Mac의 outbound long polling은 초기 후보, WS는 대안이다. Buzz의 WS 사용과 Mac dispatch 운송 방식은 별개의 결정이다. GPT가 기존 웹 대화인지 API인지 확인되지 않았으므로 계약 없는 GUI 자동화를 필수 의존성으로 넣지 않는다. 수동 인계 상태는 개발 대상의 임시 대안이며 다섯 adapter 구현 완료를 뜻하지 않는다.
 

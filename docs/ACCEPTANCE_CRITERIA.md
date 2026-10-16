@@ -36,7 +36,7 @@
 | AC-20 / M2 | 중단 요청과 완료 이벤트 경합, provider usage 미보고 | 취소 요청/확인 구분, 발생한 효과 보존, 비용 미집계 표시, 이중 완료·추정 0원 없음 | cancel 이벤트 순서·receipt·usage |
 | AC-21 / M2 | source 이벤트 역순·중복·누락 커서, protocol/capability 불일치 | 누락 재조회·중복 제거, 서명/출처·멤버십 검사, 미지원은 실행 전 차단, 읽기 투영 재구축 가능 | cursor·schema 오류·원장 대조 |
 | AC-22 / M2~M3 | 악성 원본/메시지의 권한 확대 지시, 직접 shell/MCP로 외부 쓰기, 비밀 로그 유출 시도 | 데이터로 처리, 승인 경계 우회 실패, 비밀 원문 중앙 DB·모델·로그에 없음; 강제 경계 미지원 adapter 외부 쓰기 비활성 | 격리/권한 테스트·가짜 비밀 canary 검사 |
-| AC-23 / M0~M2 | 다섯 경로를 등록하고 우리 화면에서 AI 선택→Buzz 대화→adapter→결과 회신, 실제 Paperclip 배정/상태/기록 경로와 대조 | route_id·task/run·응답 귀속 일치, 다섯 경로 각각 지원/미지원·사유·다음 행동 명시, 재사용 코드 경로·회귀 근거 존재, OpenClaw 설치 단정 없음 | 경로 지원표·명칭 확인·코드 재사용 매핑·실행 영수증 |
+| AC-23 / M0~M2 | 사용자 확인 VPS Hermes·OpenClaw, Mac COKACDIR·Orca, GPT의 다섯 경로를 등록하고 AI 선택→Buzz→adapter→결과 회신, Paperclip 실제 경로와 대조 | route_id·task/run·응답 귀속 일치, 경로별 지원/미지원·사유·다음 행동, 재사용 코드/회귀 근거 존재. 사용자 확인 VPS 대상과 설치/API 검증을 구분. COKACDIR 명칭·CLI 경로 확인과 정확한 버전/세션 연동 API 미검증을 구분 | 경로 지원표·명칭/설치/API 확인·코드 재사용 매핑·실행 영수증 |
 | AC-24 / M0~M2 | 동일 하드웨어/데이터의 idle·일상·동시 작업·재연결 burst에서 전역/노드 슬롯 및 RAM 예산 초과 유도 | 무거운 실행 전역/노드 상한 준수, 중앙 이미지/영상/브라우저 연산 0, 같은 호스트 의존성/기존 서비스/자식 프로세스 포함 예산표, 부족 시 큐 대기·제어 응답 유지, 증설/언어 선택은 측정 후 결정 | RSS/PSS·CPU·peak·swap/OOM·슬롯/큐·p95 기록, ADR 결정 근거 |
 | AC-25 / M0~M4 | 채택 upstream 버전·전이 의존성·MIT/Apache/NOTICE·수정 고지 목록을 작성하고 격리 환경에서 upgrade/restore/rollback | 코드 출처·고지·lockfile·보안 패치 책임 추적, 상태/승인/멱등성 ledger/cursor·외부 receipt 보존, 회귀 통과 전 운영 업데이트 없음, Argo 비공개 코드 도입 없음 | 재사용/의존성 목록·고지 diff·migration/복구 시험·AC 회귀 결과 |
 

@@ -41,7 +41,7 @@ AC의 전체 준비·행동·통과·증거는 [수용기준](ACCEPTANCE_CRITERI
 | 작업 ID / 단계 | 작업·산출물 | 선행·책임 역할 | 종료 증거·보류 조건 |
 | --- | --- | --- | --- |
 | W0 / M0 | 고정 upstream의 실제 배정/checkout/queue/run 경로·라이선스·의존성·확장점 분석 | 구현 담당, 현재 정적 조사 CR을 출발점으로 사용 | 재사용 map·고지 목록·호환 회귀안; 독립 원장 재작성으로 대체 금지 |
-| W1 / M0 | 다섯 route 제품명/설치·API/CLI·query/cancel·격리·노드/host_group 목록 | 운영자 확인+adapter 담당, V-04 | supported/unsupported/unknown 근거표; DIR/Orca/GPT를 임의 도구로 치환 금지 |
+| W1 / M0 | 사용자 확인 VPS Hermes·OpenClaw와 Mac COKACDIR·Orca, GPT의 설치·API/CLI·query/cancel·격리·노드/host_group 목록 | 운영자는 Orca 제품명·GPT 호출 방식 확인, adapter 담당은 모든 경로의 실지원 검증, V-04 | supported/unsupported/unknown 근거표; 확인된 명칭·경로와 미검증 버전/API를 구분하고 임의 도구로 치환 금지 |
 | W2 / M0 | 최소 중앙/Buzz 후보 구성·unknown hold·트랜잭션·자원 예산 비교 | W0, 운영/보안 담당, V-01~03/07 | ADR·TECH 선택, 같은 부하 RSS/PSS/peak·예산·슬롯 표; 수치 미측정이면 운영 설정 보류 |
 | W3 / M1 | 웹 조회·집중/마감·작업/SKU·검수·AI 카드, 로그인/권한 설계 | W0~W2의 필요한 경계 확정, UX/웹/보안 담당 | AC-01~06/13/14/17, 프런트와 원장 집계 일치; 미지원 경로는 명시 |
 | W4 / M2 | 첫 adapter·선택 AI 대화·실제 started·journal/ACK·복구 | W1/W2, W3 기본 화면·접수 경계, 채널/adapter 담당 | E2E-A와 AC-07~12/20/21/23/24; unknown hold 불가면 직접 실행 보류 |
@@ -73,7 +73,7 @@ AC의 전체 준비·행동·통과·증거는 [수용기준](ACCEPTANCE_CRITERI
 
 1. 홈에서 집중 3개와 승인 대기 중 무엇을 먼저 펼칠지, 모바일 메뉴에 대화를 고정할지.
 2. 지시할 때 SKU/목표와 AI 중 무엇을 먼저 선택할지, 결과 비교를 어떻게 볼지.
-3. 정확한 다섯 route 이름/호출 방식과 첫 직접 실행 대상.
+3. 사용자 확인 VPS Hermes·OpenClaw의 설치/API, COKACDIR의 정확한 버전·세션 연동 API, Orca 제품명·GPT 호출 방식과 첫 직접 실행 대상.
 4. Paperclip 지원 확장과 최소 patch, Buzz 재사용 단위 중 어떤 증거로 선택할지.
 5. 측정 예산을 충족하는 기존 런타임과 경량 Rust adapter 대안, Mac 연결 운송 방식.
 

@@ -37,7 +37,7 @@ Mac은 기본적으로 중앙에 outbound HTTPS로 등록·요청한다. 전달 
 
 등록에는 `adapter_id`, 실행 위치, adapter/protocol 버전, 사용 가능한 런타임과 버전, 허용 작업 루트, 지원 capability, 마지막 환경 점검을 포함한다. 비밀 값은 포함하지 않는다.
 
-추가로 사용자 선택 대상의 `route_id`와 실제 `node_id/host_group`을 분리해 기록한다. 다섯 대상은 VPS Hermes·OpenCode, Mac의 이름 미확인 DIR 봇·Orca, GPT다. 하나의 기기에 여러 adapter가 있어도 호스트 자원 예산은 공유한다. DIR 봇·Orca·GPT는 제품/호출 계약 확인 전 자동 실행 지원으로 표시하지 않고 OpenClaw로 임의 치환하지 않는다. Buzz에서 선택한 route_id → task/run → 실제 adapter → 결과 회신 경로를 추적한다.
+추가로 사용자 선택 대상의 `route_id`와 실제 `node_id/host_group`을 분리해 기록한다. 다섯 대상은 VPS Hermes·OpenClaw, Mac의 COKACDIR·Orca, GPT다. VPS의 Hermes·OpenClaw는 사용자 확인 대상이며 제안 route_id는 `vps_hermes`·`vps_openclaw`다. 실제 설치·gateway/API/CLI·실행/조회/중단 지원은 별도 검증한다. COKACDIR는 명칭·Mac CLI 실행 경로를 확인했고 제안 ID는 `mac_cokacdir`지만 정확한 버전·세션 연동 API는 미검증이다. 하나의 기기에 여러 adapter가 있어도 호스트 자원 예산은 공유한다. 미검증 호출 계약을 자동 실행 지원으로 표시하거나 임의 제품으로 치환하지 않는다. Buzz에서 선택한 route_id → task/run → 실제 adapter → 결과 회신 경로를 추적한다.
 
 자원 신고에는 작업 분류(가벼운 지시/이미지/영상/브라우저 등), 동시 슬롯, 측정일·부하 조건을 가진 메모리 추정/peak, 실행 노드의 사용 가능 여부를 포함한다. 중앙은 무거운 연산을 실행하지 않으며 본문·파일 전체 대신 참조와 제한된 메타데이터를 전달한다. 초기 제안은 무거운 작업 전역 1개·노드별 1개, 미측정 작업은 보수적인 단일 실행 평가 후 예산을 정한다. 실제 상한은 [ADR-001](ADR-001-LIGHTWEIGHT-RUNTIME.md)에 따라 측정 후 확정한다.
 

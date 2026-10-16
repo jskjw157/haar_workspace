@@ -139,7 +139,7 @@ hello/claim/started/heartbeat/events/query/reconcile/cancel/action execute의 �
 | V-01 | Paperclip extension/plugin/API와 workspace↔company·priority·revision 결합 | Task Core 담당이 고정 버전 contract 시험; 권한/단일 원장 불가면 방식 재검토 |
 | V-02 | native 큐/run에 원격 adapter·unknown 재실행 hold·승인을 결합 | adapter/보안 담당이 자동 회복까지 실패 주입; hold 강제 불가면 직접 실행 출시 보류 |
 | V-03 | Buzz 채널의 외부 인증·선택 route·서명/cursor·API 분리 지원 | 채널 담당이 실제 지원 표면/의존성·리소스 확인; 지원하지 않는 경로를 있다고 표기 금지 |
-| V-04 | 다섯 경로의 실제 이름·설치·API/CLI/GPT 호출·세션/취소 지원 | 운영자 명칭 확인 + adapter 담당 진단/계약 시험; 미지원 capability는 비활성 |
+| V-04 | 사용자 확인 VPS Hermes·OpenClaw, Mac COKACDIR·Orca, GPT의 실제 설치·API/CLI/호출·세션/취소 지원 | VPS route_id는 `vps_hermes`·`vps_openclaw`, COKACDIR 제안 ID는 `mac_cokacdir`이며 명칭·Mac CLI 실행 경로는 확인됨. 정확한 버전·세션 연동 API, Orca 제품명·GPT 호출 방식은 별도 확인. adapter 진단/계약 시험 전 미지원 capability는 비활성 |
 | V-05 | Drive 접근·고정 버전/복사본·digest·preview | 파일 담당이 공식 지원·권한/변경 시험; 고정 검증 불가 시 자동 게시 보류 |
 | V-06 | Mac helper API·서명·Keychain 등록과 웹 로그인 | 보안 담당이 공식 API/OS 경계 확인; Apple Passwords 자동 접근/중앙 token 저장 전제 금지 |
 | V-07 | 실제 VPS 용량·idle/peak·pool/버퍼/슬롯 상한·Rust 비용 | 운영 담당이 ADR-001 측정; 미측정 MiB·무제한 동시성을 운영 설정으로 사용 금지 |

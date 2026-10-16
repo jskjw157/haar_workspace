@@ -28,7 +28,7 @@
 
 MCP 연결과 AI 실행은 별도 계약이다. 도구를 등록하면 해당 AI가 호출할 수 있을 뿐, 기존 GPT/dot 대화와 Mac의 모든 앱이 자동으로 깨지 않는다. 시작·상태 조회·중단·세션 재개를 지원하는 adapter가 있어야 직접 실행을 제공한다. 미지원 도구는 수동 인계로 표시한다.
 
-추가 음성 합의의 개발 대상은 VPS Hermes·OpenCode, Mac의 이름 미확인 DIR 봇·Orca, GPT의 다섯 경로다. adapter 개발도 제품 범위이며 정확한 명칭·호출 계약을 확인해 단계적으로 개발한다. OpenClaw 사용은 미확인이다. 전체 스택을 Rust로 확정하지 않고 기존 Paperclip/Buzz 언어·런타임 재사용과 경량 adapter만 Rust로 작성하는 대안을 [ADR-001](ADR-001-LIGHTWEIGHT-RUNTIME.md)에서 비교한다.
+사용자 확인에 따른 개발 대상은 VPS Hermes·OpenClaw, Mac의 COKACDIR·Orca, GPT의 다섯 경로다. adapter 개발도 제품 범위다. Hermes·OpenClaw는 확정 대상이지만 실제 설치·버전·gateway/API/CLI 지원은 별도로 검증한다. 나머지 미확인 제품명·호출 계약도 확인해 단계적으로 개발한다. 전체 스택을 Rust로 확정하지 않고 기존 Paperclip/Buzz 언어·런타임 재사용과 경량 adapter만 Rust로 작성하는 대안을 [ADR-001](ADR-001-LIGHTWEIGHT-RUNTIME.md)에서 비교한다.
 
 ### 2.1 실제 코드 분석·재사용 관문
 
@@ -110,3 +110,9 @@ Argo docs의 확인 시 표시된 갱신일은 2026-07-15였다. 문서·홍보 
 확인한 것은 저장소 메타데이터, 공개 공식 문서·라이선스, 관련 `.agents/skills`와 구조, CR-01~07의 제한된 실제 코드 경로다. 실제 서버 설치·소스 빌드·라이브 connector·Apple Keychain API·각 SNS/광고/CS 플랫폼의 쓰기 API는 이번에 실행·검증하지 않았다. 이에 관한 설계는 PRD에서 [제안] 또는 [미확인]으로 남긴다.
 
 첫 구현 전에는 각 채택 버전의 공식 API, 라이선스·NOTICE·전이 의존성, 인증/권한 강제, 상태 매핑, 외부 결과 조회 방법을 별도 evidence로 기록해야 한다. Argo 계약 미확인이나 Buzz 모듈 분리 지연 때문에 기본 기록·집중·수동 검수까지 막히지 않도록 단계별 경계를 유지한다.
+
+## 8. COKACDIR 명칭·Mac 관측 근거
+
+공식 [kstost/cokacdir 저장소](https://github.com/kstost/cokacdir)는 COKACDIR 명칭과 기존 코딩 agent에 작업을 위임하는 CLI/채팅 연결 도구임을 설명한다. OpenCode도 지원 대상 예시 중 하나이므로 VPS 대상을 정정했다는 이유로 Mac의 OpenCode 가능성까지 일괄 제외하지 않는다. 실제 선택 provider는 확인하지 않았다.
+
+2026-10-16 상위 스레드의 Mac 읽기 조사 전달 근거로 `~/.local/bin/cokacdir` 실행 중 및 `/usr/local/bin/cokacdir`, `cokacctl` 존재가 확인되었다. 이는 명칭·로컬 관측 근거이며 정확한 설치 버전·HAAR 세션 연동 API·실행/중단 계약 검증을 뜻하지 않는다. 이 문서 작업에서는 해당 프로세스를 재시작하거나 설정·비밀정보를 읽지 않았다.
