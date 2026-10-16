@@ -32,9 +32,25 @@ MCP 연결과 AI 실행은 별도 계약이다. 도구를 등록하면 해당 AI
 
 ### 2.1 실제 코드 분석·재사용 관문
 
-사용자 합의는 UI 모방이나 개념 참고에 그치지 않는 실제 로직 재사용이다. 구현 전 `server/src/routes/issues.ts`, `server/src/services/issues.ts`, `server/src/services/heartbeat.ts`, `packages/db/src/schema/issues.ts`, `packages/db/src/schema/heartbeat_runs.ts` 등을 출발점으로 배정 명령 → 상태 전이/checkout → run/이벤트 저장 → 복구 경로를 추적한다. 이 경로들은 검토 커밋의 tree에서 존재를 확인한 **추가 분석 대상**이며 이번 문서 작업에서 코드 분석·재사용 구현을 완료했다고 주장하지 않는다.
+사용자 합의는 UI 모방이나 개념 참고에 그치지 않는 실제 로직 재사용이다. 구현 전 `server/src/routes/issues.ts`, `server/src/services/issues.ts`, `server/src/services/heartbeat.ts`, `packages/db/src/schema/issues.ts`, `packages/db/src/schema/heartbeat_runs.ts` 등을 출발점으로 배정 명령 → 상태 전이/checkout → run/이벤트 저장 → 복구 경로를 추적한다. 제한적인 읽기 전용 확인 결과는 2.2절에 기록했으며, 전체 경로 분석·재사용 구현·호환성 검증은 완료하지 않았다.
 
 M0 산출물은 기능별 실제 호출 경로·불변 조건·재사용 단위·HAAR 확장 지점·DB/인증 의존성·라이선스 고지·upstream 업데이트 영향 및 회귀시험의 매핑이다. 배정/상태/기록 로직을 별도 원장으로 중복 구현하는 안은 이 합의와 맞지 않으므로 재사용 경계를 먼저 검증한다.
+
+### 2.2 읽기 전용 코드 조사 결과
+
+추가 설계 문서 작성 시 같은 고정 커밋의 아래 코드 일부를 실제로 읽고 호출·저장 경로를 정적으로 확인했다. 이전의 ‘추가 분석 대상’에서 한 단계 진행한 제한적 조사이며 전체 코드 검토·지원 호환 시험·실서버 동작 검증이 아니다. 함수 내용의 재사용 구현·설치·배포는 수행하지 않았다.
+
+| 근거 ID·고정 소스 | 실제로 확인한 경로/사실 | HAAR 적용·남은 검증 |
+| --- | --- | --- |
+| CR-01 [routes/issues.ts](https://github.com/PaperclipAI/paperclip/blob/b294abb9eb96c33048b4f53a2a037e04886b7407/server/src/routes/issues.ts#L15893) | checkout route가 agent 자기 자신 검사·배정 권한·run ID를 확인하고 `svc.checkout` 호출·activity 기록 | HTTP 검사까지 포함한 경계 재사용. HAAR actor/company mapping과 모든 변경 경로 검증 필요 |
+| CR-02 [services/issues.ts](https://github.com/PaperclipAI/paperclip/blob/b294abb9eb96c33048b4f53a2a037e04886b7407/server/src/services/issues.ts#L11657) | checkout은 의존성·expectedStatuses·assignee·execution lock 조건으로 갱신하고 동일 run 재접수·stale 정리 경로 및 최종 conflict를 구분. update에는 companyGuard·소유권/상태 관련 version 갱신 경로 존재 | 이 로직을 원장으로 활용. 원격 unknown의 안전한 재실행 hold와 확장 revision은 추가 설계/시험 |
+| CR-03 [heartbeat/queue.ts](https://github.com/PaperclipAI/paperclip/blob/b294abb9eb96c33048b4f53a2a037e04886b7407/server/src/services/heartbeat/queue.ts#L938) | `claimQueuedRun`이 queued 상태·setup·agent invokability·시작 허용·budget/daily cap 등을 검사 | 기존 큐 경계에 원격 가용성/자원 admission을 결합할 수 있는지 확인. 기존 budget 검사를 RAM 예산으로 가정하지 않음 |
+| CR-04 [heartbeat/run-lifecycle.ts](https://github.com/PaperclipAI/paperclip/blob/b294abb9eb96c33048b4f53a2a037e04886b7407/server/src/services/heartbeat/run-lifecycle.ts#L2033) | `appendRunEvent`가 message/payload 제한·redaction 후 `appendHeartbeatRunEvent` 저장, duplicate 결과면 publish 생략. `setRunStatus`는 저장·terminal 처리·live event 경로 보유 | run/event 기록 경로 재사용. generic source_event_id·장기 action 멱등성·원격 ACK 보장이 이미 있다는 뜻은 아님 |
+| CR-05 [schema/issues.ts](https://github.com/PaperclipAI/paperclip/blob/b294abb9eb96c33048b4f53a2a037e04886b7407/packages/db/src/schema/issues.ts) | companyId·status/statusVersion·priority·assigneeAgentId/UserId·checkoutRunId/executionRunId·executionState 필드와 인덱스 존재 | HAAR TaskBinding의 원천, statusVersion을 전체 편집 revision으로 동일시하지 않음 |
+| CR-06 [schema/heartbeat_runs.ts](https://github.com/PaperclipAI/paperclip/blob/b294abb9eb96c33048b4f53a2a037e04886b7407/packages/db/src/schema/heartbeat_runs.ts) | company/agent/issue·status·started/finished·usage/result/log·externalRunId·controller lease/process 관련 필드 존재 | 원장 run mapping의 근거. 원격 started receipt·node journal·HAAR lease_epoch의 자동 호환은 미확인 |
+| CR-07 [services/heartbeat.ts](https://github.com/PaperclipAI/paperclip/blob/b294abb9eb96c33048b4f53a2a037e04886b7407/server/src/services/heartbeat.ts#L1206) | `createHeartbeatQueue`/`createHeartbeatLifecycle` 조립, execute 경로에서 issue checkout 호출, appendRunEvent 위임 확인 | 큐와 lifecycle을 분리해 분석할 출발점. 실제 adapter 확장 방법·모든 recovery 경로는 M0 스파이크 과제 |
+
+API 이름·필드가 존재한다는 사실과 HAAR의 요구를 안전하게 제공한다는 판단을 구분한다. 상세 제안은 [TDD](TDD.md), 원장↔확장 매핑과 미확인 계약은 [데이터/API/MCP 명세](DATA_API_MCP_SPEC.md)에 연결한다.
 
 ## 3. 라이선스·의존성·업데이트 전략 [제안]
 
@@ -91,6 +107,6 @@ Argo docs의 확인 시 표시된 갱신일은 2026-07-15였다. 문서·홍보 
 
 ## 7. 검증 범위와 남은 확인
 
-확인한 것은 저장소 메타데이터, 공개 공식 문서·라이선스, 관련 `.agents/skills`와 구조다. 실제 서버 설치·소스 빌드·라이브 connector·Apple Keychain API·각 SNS/광고/CS 플랫폼의 쓰기 API는 이번에 실행·검증하지 않았다. 이에 관한 설계는 PRD에서 [제안] 또는 [미확인]으로 남긴다.
+확인한 것은 저장소 메타데이터, 공개 공식 문서·라이선스, 관련 `.agents/skills`와 구조, CR-01~07의 제한된 실제 코드 경로다. 실제 서버 설치·소스 빌드·라이브 connector·Apple Keychain API·각 SNS/광고/CS 플랫폼의 쓰기 API는 이번에 실행·검증하지 않았다. 이에 관한 설계는 PRD에서 [제안] 또는 [미확인]으로 남긴다.
 
 첫 구현 전에는 각 채택 버전의 공식 API, 라이선스·NOTICE·전이 의존성, 인증/권한 강제, 상태 매핑, 외부 결과 조회 방법을 별도 evidence로 기록해야 한다. Argo 계약 미확인이나 Buzz 모듈 분리 지연 때문에 기본 기록·집중·수동 검수까지 막히지 않도록 단계별 경계를 유지한다.

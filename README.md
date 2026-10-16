@@ -6,17 +6,28 @@
 
 **현재 상태: PRD 초안 / 구현 전.** SELLAYER와 별도 프로젝트입니다. 이번 변경에는 구현 코드, 서비스 설치, 배포, 기존 서버 변경, 비밀정보 이관이 없습니다. 기존 서버의 Paperclip 설치 상태도 미검증입니다.
 
-## 문서 읽는 순서
+## 핵심 기획·설계 6종
 
 | 문서 | 내용 |
 | --- | --- |
-| [상세 PRD](docs/PRD.md) | 목표·범위·사용자 흐름·화면·정보구조·데이터·MVP·미결정 사항 |
-| [실행 adapter 계약](docs/ADAPTER_CONTRACT.md) | 작업 ID·큐·소유권·heartbeat·중복 방지·장애 복구 |
-| [보안과 승인](docs/SECURITY_APPROVALS.md) | 권한 경계·결과 검수·외부 실행 승인·Mac 로그인 helper 계획 |
+| 1. [PRD](docs/PRD.md) | 확정 요구·목표/비목표·제품 범위·단계·미결정 사항 |
+| 2. [유저저니·화면설계](docs/USER_JOURNEYS_SCREENS.md) | iPhone/데스크톱 여정·화면 전환·오류 상태·논의할 UX 선택지 |
+| 3. [기술설계 TDD](docs/TDD.md) | 실제 로직 재사용·구성 경계·시퀀스·자원·장애 설계 |
+| 4. [데이터/API/MCP 명세](docs/DATA_API_MCP_SPEC.md) | 데이터 제약·명령/조회 계약·MCP 도구·가정과 검증 과제 |
+| 5. [보안·권한설계](docs/SECURITY_APPROVALS.md) | 역할별 권한·승인·위협·비밀정보·로그인 helper 계획 |
+| 6. [구현·검증계획](docs/IMPLEMENTATION_PLAN.md) | 요구→설계→수용기준 추적, 작업 순서·의존성·증거·결정 선택지 |
+
+## 상세 계약과 근거
+
+| 문서 | 내용 |
+| --- | --- |
+| [실행 adapter 계약](docs/ADAPTER_CONTRACT.md) | 큐·소유권·heartbeat·중복 방지·실패 복구의 상세 기준 |
 | [수용기준](docs/ACCEPTANCE_CRITERIA.md) | 단계별 검증 시나리오와 통과 조건 |
 | [기술 검토와 공식 출처](docs/TECHNICAL_REVIEW.md) | Paperclip·Buzz·Argo의 활용 범위, 라이선스·모듈 분리·업데이트 전략 |
 | [경량 운영·Rust 검토 ADR](docs/ADR-001-LIGHTWEIGHT-RUNTIME.md) | VPS 부하 경계, 메모리·동시성 측정, 재사용 비용과 Rust 선택 기준 |
 | [저장소 확인 기록](docs/REPOSITORY_STATUS.md) | 초기 빈 저장소 상태, 보존·초기화 방식, 문서 검증 범위 |
+
+제품 범위는 PRD, 화면 흐름은 화면설계, 구성은 TDD, 필드/명령 계약은 데이터/API/MCP 명세, 권한은 보안설계, 순서/추적은 구현계획을 기준으로 합니다. 기존 PRD의 화면·데이터 개요는 유지하고 상세 정의를 중복 복사하지 않습니다. 문서 보강 승인은 앱 구현·배포·PR 병합 승인이 아닙니다.
 
 ## 검토할 핵심 결정
 
