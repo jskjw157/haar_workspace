@@ -5,3 +5,7 @@ __pycache__/
 output/
 .env
 .playwright-cli/
+.impeccable/review/
+.impeccable/questions/
+.impeccable/config.local.json
+.superdesign/tmp/
