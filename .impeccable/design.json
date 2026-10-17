@@ -1,0 +1,424 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T00:54:00.923873+00:00",
+  "title": "Design System: HAAR Workspace",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Bg",
+        "tonalRamp": [
+          "oklch(15% 0.00287 264.54)",
+          "oklch(26% 0.00287 264.54)",
+          "oklch(38% 0.00287 264.54)",
+          "oklch(49% 0.00287 264.54)",
+          "oklch(61% 0.00287 264.54)",
+          "oklch(72% 0.00287 264.54)",
+          "oklch(84% 0.00287 264.54)",
+          "oklch(95% 0.00287 264.54)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "tonalRamp": [
+          "oklch(15% 0.00000 89.88)",
+          "oklch(26% 0.00000 89.88)",
+          "oklch(38% 0.00000 89.88)",
+          "oklch(49% 0.00000 89.88)",
+          "oklch(61% 0.00000 89.88)",
+          "oklch(72% 0.00000 89.88)",
+          "oklch(84% 0.00000 89.88)",
+          "oklch(95% 0.00000 89.88)"
+        ]
+      },
+      "rail": {
+        "role": "neutral",
+        "displayName": "Rail",
+        "tonalRamp": [
+          "oklch(15% 0.01444 266.92)",
+          "oklch(26% 0.01444 266.92)",
+          "oklch(38% 0.01444 266.92)",
+          "oklch(49% 0.01444 266.92)",
+          "oklch(61% 0.01444 266.92)",
+          "oklch(72% 0.01444 266.92)",
+          "oklch(84% 0.01444 266.92)",
+          "oklch(95% 0.01444 266.92)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Text",
+        "tonalRamp": [
+          "oklch(15% 0.02237 265.69)",
+          "oklch(26% 0.02237 265.69)",
+          "oklch(38% 0.02237 265.69)",
+          "oklch(49% 0.02237 265.69)",
+          "oklch(61% 0.02237 265.69)",
+          "oklch(72% 0.02237 265.69)",
+          "oklch(84% 0.02237 265.69)",
+          "oklch(95% 0.02237 265.69)"
+        ]
+      },
+      "secondary": {
+        "role": "neutral",
+        "displayName": "Secondary",
+        "tonalRamp": [
+          "oklch(15% 0.03191 262.18)",
+          "oklch(26% 0.03191 262.18)",
+          "oklch(38% 0.03191 262.18)",
+          "oklch(49% 0.03191 262.18)",
+          "oklch(61% 0.03191 262.18)",
+          "oklch(72% 0.03191 262.18)",
+          "oklch(84% 0.03191 262.18)",
+          "oklch(95% 0.03191 262.18)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "tonalRamp": [
+          "oklch(15% 0.03456 260.64)",
+          "oklch(26% 0.03456 260.64)",
+          "oklch(38% 0.03456 260.64)",
+          "oklch(49% 0.03456 260.64)",
+          "oklch(61% 0.03456 260.64)",
+          "oklch(72% 0.03456 260.64)",
+          "oklch(84% 0.03456 260.64)",
+          "oklch(95% 0.03456 260.64)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "tonalRamp": [
+          "oklch(15% 0.01042 261.79)",
+          "oklch(26% 0.01042 261.79)",
+          "oklch(38% 0.01042 261.79)",
+          "oklch(49% 0.01042 261.79)",
+          "oklch(61% 0.01042 261.79)",
+          "oklch(72% 0.01042 261.79)",
+          "oklch(84% 0.01042 261.79)",
+          "oklch(95% 0.01042 261.79)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Line Strong",
+        "tonalRamp": [
+          "oklch(15% 0.01535 260.73)",
+          "oklch(26% 0.01535 260.73)",
+          "oklch(38% 0.01535 260.73)",
+          "oklch(49% 0.01535 260.73)",
+          "oklch(61% 0.01535 260.73)",
+          "oklch(72% 0.01535 260.73)",
+          "oklch(84% 0.01535 260.73)",
+          "oklch(95% 0.01535 260.73)"
+        ]
+      },
+      "hover": {
+        "role": "neutral",
+        "displayName": "Hover",
+        "tonalRamp": [
+          "oklch(15% 0.00742 260.73)",
+          "oklch(26% 0.00742 260.73)",
+          "oklch(38% 0.00742 260.73)",
+          "oklch(49% 0.00742 260.73)",
+          "oklch(61% 0.00742 260.73)",
+          "oklch(72% 0.00742 260.73)",
+          "oklch(84% 0.00742 260.73)",
+          "oklch(95% 0.00742 260.73)"
+        ]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Primary",
+        "tonalRamp": [
+          "oklch(15% 0.20808 265.06)",
+          "oklch(26% 0.20808 265.06)",
+          "oklch(38% 0.20808 265.06)",
+          "oklch(49% 0.20808 265.06)",
+          "oklch(61% 0.20808 265.06)",
+          "oklch(72% 0.20808 265.06)",
+          "oklch(84% 0.20808 265.06)",
+          "oklch(95% 0.20808 265.06)"
+        ]
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Primary Hover",
+        "tonalRamp": [
+          "oklch(15% 0.19079 264.98)",
+          "oklch(26% 0.19079 264.98)",
+          "oklch(38% 0.19079 264.98)",
+          "oklch(49% 0.19079 264.98)",
+          "oklch(61% 0.19079 264.98)",
+          "oklch(72% 0.19079 264.98)",
+          "oklch(84% 0.19079 264.98)",
+          "oklch(95% 0.19079 264.98)"
+        ]
+      },
+      "primary-soft": {
+        "role": "primary",
+        "displayName": "Primary Soft",
+        "tonalRamp": [
+          "oklch(15% 0.01824 269.09)",
+          "oklch(26% 0.01824 269.09)",
+          "oklch(38% 0.01824 269.09)",
+          "oklch(49% 0.01824 269.09)",
+          "oklch(61% 0.01824 269.09)",
+          "oklch(72% 0.01824 269.09)",
+          "oklch(84% 0.01824 269.09)",
+          "oklch(95% 0.01824 269.09)"
+        ]
+      },
+      "error": {
+        "role": "semantic",
+        "displayName": "Error",
+        "tonalRamp": [
+          "oklch(15% 0.15422 28.75)",
+          "oklch(26% 0.15422 28.75)",
+          "oklch(38% 0.15422 28.75)",
+          "oklch(49% 0.15422 28.75)",
+          "oklch(61% 0.15422 28.75)",
+          "oklch(72% 0.15422 28.75)",
+          "oklch(84% 0.15422 28.75)",
+          "oklch(95% 0.15422 28.75)"
+        ]
+      },
+      "error-soft": {
+        "role": "semantic",
+        "displayName": "Error Soft",
+        "tonalRamp": [
+          "oklch(15% 0.01678 31.08)",
+          "oklch(26% 0.01678 31.08)",
+          "oklch(38% 0.01678 31.08)",
+          "oklch(49% 0.01678 31.08)",
+          "oklch(61% 0.01678 31.08)",
+          "oklch(72% 0.01678 31.08)",
+          "oklch(84% 0.01678 31.08)",
+          "oklch(95% 0.01678 31.08)"
+        ]
+      },
+      "warning": {
+        "role": "semantic",
+        "displayName": "Warning",
+        "tonalRamp": [
+          "oklch(15% 0.10862 70.40)",
+          "oklch(26% 0.10862 70.40)",
+          "oklch(38% 0.10862 70.40)",
+          "oklch(49% 0.10862 70.40)",
+          "oklch(61% 0.10862 70.40)",
+          "oklch(72% 0.10862 70.40)",
+          "oklch(84% 0.10862 70.40)",
+          "oklch(95% 0.10862 70.40)"
+        ]
+      },
+      "warning-soft": {
+        "role": "semantic",
+        "displayName": "Warning Soft",
+        "tonalRamp": [
+          "oklch(15% 0.02838 84.59)",
+          "oklch(26% 0.02838 84.59)",
+          "oklch(38% 0.02838 84.59)",
+          "oklch(49% 0.02838 84.59)",
+          "oklch(61% 0.02838 84.59)",
+          "oklch(72% 0.02838 84.59)",
+          "oklch(84% 0.02838 84.59)",
+          "oklch(95% 0.02838 84.59)"
+        ]
+      },
+      "success": {
+        "role": "semantic",
+        "displayName": "Success",
+        "tonalRamp": [
+          "oklch(15% 0.10106 155.71)",
+          "oklch(26% 0.10106 155.71)",
+          "oklch(38% 0.10106 155.71)",
+          "oklch(49% 0.10106 155.71)",
+          "oklch(61% 0.10106 155.71)",
+          "oklch(72% 0.10106 155.71)",
+          "oklch(84% 0.10106 155.71)",
+          "oklch(95% 0.10106 155.71)"
+        ]
+      },
+      "success-soft": {
+        "role": "semantic",
+        "displayName": "Success Soft",
+        "tonalRamp": [
+          "oklch(15% 0.01650 156.91)",
+          "oklch(26% 0.01650 156.91)",
+          "oklch(38% 0.01650 156.91)",
+          "oklch(49% 0.01650 156.91)",
+          "oklch(61% 0.01650 156.91)",
+          "oklch(72% 0.01650 156.91)",
+          "oklch(84% 0.01650 156.91)",
+          "oklch(95% 0.01650 156.91)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page heading; becomes 27px on mobile."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Section headings; becomes 15px on mobile."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Introductory interface copy."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Compact metadata and supporting labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "toast",
+        "value": "0 5px 16px #18203325",
+        "purpose": "Transient notification."
+      },
+      {
+        "name": "dialog",
+        "value": "0 20px 70px #18203330",
+        "purpose": "Modal work editor."
+      }
+    ],
+    "motion": [
+      {
+        "name": "duration-fast",
+        "value": "160ms",
+        "purpose": "Background, color and border-color transitions under prefers-reduced-motion: no-preference."
+      },
+      {
+        "name": "state-easing",
+        "value": "ease-out",
+        "purpose": "Control state changes."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-narrow",
+        "value": "350px"
+      },
+      {
+        "name": "mobile",
+        "value": "760px"
+      },
+      {
+        "name": "stack-support",
+        "value": "1000px"
+      },
+      {
+        "name": "compact-desktop",
+        "value": "1200px"
+      },
+      {
+        "name": "wide",
+        "value": "1600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The prominent draft-creation action.",
+      "html": "<button class=\"ds-primary\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 5v14M5 12h14\"/></svg>새 작업 정리</button>",
+      "css": ".ds-primary{font-family:var(--font-sans);letter-spacing:-.015em;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:9px 15px;font-size:13px;font-weight:600;border:1px solid transparent;border-radius:var(--radius-sm);line-height:1.5;cursor:pointer;background:var(--color-primary);color:var(--color-surface)}.ds-primary svg{width:17px;height:17px}.ds-primary:hover{background:var(--color-primary-hover)}.ds-primary:active{background:#16389e}.ds-primary:focus-visible{outline:3px solid var(--color-primary);outline-offset:3px}@media(max-width:760px){.ds-primary{min-height:44px}}@media(prefers-reduced-motion:no-preference){.ds-primary,.ds-secondary,.ds-text,.ds-field,.ds-nav,.ds-chip,.ds-title{transition:background var(--duration-fast) ease-out,color var(--duration-fast) ease-out,border-color var(--duration-fast) ease-out}}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Supporting actions inside forms.",
+      "html": "<button class=\"ds-secondary\">취소</button>",
+      "css": ".ds-secondary{font-family:var(--font-sans);letter-spacing:-.015em;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:9px 15px;font-size:13px;font-weight:600;border:1px solid transparent;border-radius:var(--radius-sm);line-height:1.5;cursor:pointer;background:var(--color-surface);border-color:var(--color-line-strong);color:var(--color-secondary)}.ds-secondary:hover{background:var(--color-hover);color:var(--color-text)}.ds-secondary:focus-visible{outline:3px solid var(--color-primary);outline-offset:3px}@media(max-width:760px){.ds-secondary{min-height:44px}}@media(prefers-reduced-motion:no-preference){.ds-primary,.ds-secondary,.ds-text,.ds-field,.ds-nav,.ds-chip,.ds-title{transition:background var(--duration-fast) ease-out,color var(--duration-fast) ease-out,border-color var(--duration-fast) ease-out}}"
+    },
+    {
+      "name": "Text Button",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Quiet supporting navigation.",
+      "html": "<button class=\"ds-text\">전체 보기</button>",
+      "css": ".ds-text{font-family:var(--font-sans);letter-spacing:-.015em;display:inline-flex;align-items:center;justify-content:center;gap:7px;font-size:12px;font-weight:500;color:var(--color-secondary);min-height:32px;border:0;background:none;cursor:pointer}.ds-text:hover{color:var(--color-primary)}.ds-text:focus-visible{outline:3px solid var(--color-primary);outline-offset:3px}@media(max-width:760px){.ds-text{min-width:44px;min-height:44px}}@media(prefers-reduced-motion:no-preference){.ds-primary,.ds-secondary,.ds-text,.ds-field,.ds-nav,.ds-chip,.ds-title{transition:background var(--duration-fast) ease-out,color var(--duration-fast) ease-out,border-color var(--duration-fast) ease-out}}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "A labelled draft-entry field.",
+      "html": "<label class=\"ds-label\">어떤 일을 할까요?<input class=\"ds-field\" placeholder=\"신상품 상세페이지 초안 만들기\"></label>",
+      "css": ".ds-label{font-family:var(--font-sans);letter-spacing:-.015em;display:block;font-size:12px;font-weight:500;color:var(--color-secondary)}.ds-field{font-family:var(--font-sans);letter-spacing:-.015em;width:100%;border:1px solid var(--color-line-strong);border-radius:var(--radius-sm);background:var(--color-surface);color:var(--color-text);font-size:14px;padding:10px 12px;line-height:1.6;margin-top:7px;min-height:42px;caret-color:var(--color-primary)}.ds-field::placeholder{color:var(--color-muted);font-size:12px;opacity:1}.ds-field:focus{outline:2px solid var(--color-primary);outline-offset:1px;border-color:transparent}@media(max-width:760px){.ds-field{font-size:16px;min-height:44px;padding:10px}}@media(prefers-reduced-motion:no-preference){.ds-primary,.ds-secondary,.ds-text,.ds-field,.ds-nav,.ds-chip,.ds-title{transition:background var(--duration-fast) ease-out,color var(--duration-fast) ease-out,border-color var(--duration-fast) ease-out}}"
+    },
+    {
+      "name": "Rail Navigation",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Selected and idle desktop navigation rows.",
+      "html": "<nav class=\"ds-rail\" aria-label=\"작업실\"><button class=\"ds-nav ds-active\" aria-current=\"page\">오늘</button><button class=\"ds-nav\">전체 작업</button></nav>",
+      "css": ".ds-rail{background:var(--color-rail);padding:16px;width:216px}.ds-nav{font-family:var(--font-sans);letter-spacing:-.015em;display:flex;align-items:center;gap:11px;width:100%;min-height:44px;border-radius:var(--radius-sm);padding:11px 12px;text-align:left;color:#aeb6c4;font-size:13px;font-weight:500;margin-bottom:5px;border:0;background:none;cursor:pointer}.ds-nav:hover{background:#252a34;color:#f2f4f8}.ds-nav.ds-active{background:#2d3c66;color:#edf2ff}.ds-nav:focus-visible{outline:3px solid var(--color-primary);outline-offset:3px}@media(prefers-reduced-motion:no-preference){.ds-primary,.ds-secondary,.ds-text,.ds-field,.ds-nav,.ds-chip,.ds-title{transition:background var(--duration-fast) ease-out,color var(--duration-fast) ease-out,border-color var(--duration-fast) ease-out}}"
+    },
+    {
+      "name": "Active Filter",
+      "kind": "chip",
+      "refersTo": "filter-active",
+      "description": "An underlined work-list filter.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">등록 대기</button>",
+      "css": ".ds-chip{font-family:var(--font-sans);letter-spacing:-.015em;min-height:40px;padding:8px 12px;font-size:12px;color:var(--color-primary);border:0;border-bottom:2px solid var(--color-primary);font-weight:600;white-space:nowrap;background:none;cursor:pointer}.ds-chip:hover{color:var(--color-text)}.ds-chip:focus-visible{outline:3px solid var(--color-primary);outline-offset:3px}@media(max-width:760px){.ds-chip{font-size:11px;padding:9px 7px;min-height:44px;min-width:44px}}@media(prefers-reduced-motion:no-preference){.ds-primary,.ds-secondary,.ds-text,.ds-field,.ds-nav,.ds-chip,.ds-title{transition:background var(--duration-fast) ease-out,color var(--duration-fast) ease-out,border-color var(--duration-fast) ease-out}}"
+    },
+    {
+      "name": "Agent Card",
+      "kind": "card",
+      "refersTo": "agent-card",
+      "description": "A quiet container for connection evidence.",
+      "html": "<article class=\"ds-card\"><h3>GPT</h3><p>미연결</p></article>",
+      "css": ".ds-card{font-family:var(--font-sans);letter-spacing:-.015em;background:var(--color-surface);color:var(--color-text);padding:22px;border:1px solid var(--color-line);border-radius:var(--radius-lg)}.ds-card h3{margin:0;font-size:14px;font-weight:600}.ds-card p{font-size:11px;color:var(--color-muted);margin:2px 0 0}@media(prefers-reduced-motion:no-preference){.ds-primary,.ds-secondary,.ds-text,.ds-field,.ds-nav,.ds-chip,.ds-title{transition:background var(--duration-fast) ease-out,color var(--duration-fast) ease-out,border-color var(--duration-fast) ease-out}}"
+    },
+    {
+      "name": "Ranked Focus Row",
+      "kind": "custom",
+      "refersTo": "focus-row",
+      "description": "A numbered work item with its next action.",
+      "html": "<article class=\"ds-focus\"><span class=\"ds-number\">1</span><div><button class=\"ds-title\">상세페이지 초안 정리</button><p class=\"ds-next\">소재 문구 확인하기</p><span class=\"ds-meta\">GPT · 미정</span></div></article>",
+      "css": ".ds-focus{font-family:var(--font-sans);letter-spacing:-.015em;display:flex;align-items:center;gap:16px;padding:19px 20px;background:var(--color-surface);color:var(--color-text);border-bottom:1px solid var(--color-line)}.ds-focus:hover{background:#fcfdff}.ds-number{width:24px;flex-shrink:0;font-size:12px;font-variant-numeric:tabular-nums;color:var(--color-muted);font-weight:600;align-self:flex-start;line-height:24px}.ds-title{font-family:var(--font-sans);letter-spacing:-.015em;font-size:15px;font-weight:600;line-height:1.5;text-align:left;overflow-wrap:anywhere;color:var(--color-text);border:0;background:none;padding:0;cursor:pointer}.ds-title:hover{color:var(--color-primary)}.ds-title:focus-visible{outline:3px solid var(--color-primary);outline-offset:3px}.ds-next{font-size:12px;color:var(--color-secondary);line-height:1.6;margin:6px 0 0}.ds-meta{display:block;font-size:11px;color:var(--color-muted);margin-top:9px}@media(max-width:760px){.ds-focus{padding:16px 13px;gap:9px;align-items:flex-start}.ds-title{font-size:14px}.ds-number{width:18px;font-size:11px}}@media(prefers-reduced-motion:no-preference){.ds-primary,.ds-secondary,.ds-text,.ds-field,.ds-nav,.ds-chip,.ds-title{transition:background var(--duration-fast) ease-out,color var(--duration-fast) ease-out,border-color var(--duration-fast) ease-out}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The quiet work console",
+    "overview": "The quiet work console makes operational reading immediate: a dark navigation rail frames a cool neutral canvas, while white grouped surfaces and fine rules organize dense information. Blue identifies actions and selection; text hierarchy and alignment carry the rest.\n\nThe component system uses native interface typography, restrained curves and flat surfaces. Connection and draft labels remain explicit, so a polished presentation never implies an AI adapter is running or a draft has been dispatched.",
+    "keyCharacteristics": [
+      "Dark rail with cool neutral content.",
+      "One blue action accent with semantic status colors.",
+      "Ranked focus rows and aligned work metadata.",
+      "Flat surfaces, visible focus and responsive reflow."
+    ],
+    "rules": [
+      {
+        "name": "The Action Blue Rule",
+        "body": "Use blue for actions, selection and review emphasis; reserve warning, error and success colors for their stated status.",
+        "section": "colors"
+      },
+      {
+        "name": "The Flat Work Rule",
+        "body": "Keep working surfaces flat; reserve shadows for dialogs and transient notifications.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep priority, title, status, assigned AI and deadline easy to scan.",
+      "Do preserve explicit draft, sample and disconnected labels.",
+      "Do use the existing inline stroke SVGs and visible keyboard focus.",
+      "Do reflow rows into stacked metadata and move navigation to the bottom on mobile."
+    ],
+    "donts": [
+      "Don't imply running AI, dispatch or external approval through status styling.",
+      "Don't add decorative hero treatments, repeated badges or a circular progress display to this console.",
+      "Don't add external fonts, imagery or a second decorative action accent."
+    ]
+  }
+}
