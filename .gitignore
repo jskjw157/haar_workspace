@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.data/
+*.sqlite3*
+output/
+.env
+.playwright-cli/
+.impeccable/review/
+.impeccable/questions/
+.impeccable/config.local.json
+.superdesign/tmp/

@@ -1,0 +1,32 @@
+[Unit]
+Description=HAAR Workspace M0 isolated loopback intake pilot
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=true
+StateDirectory=haar-workspace-mvp
+StateDirectoryMode=0700
+WorkingDirectory=/opt/haar-workspace-mvp-20261017/current
+ExecStart=/usr/bin/python3 -m app.server --port 3310 --data /var/lib/haar-workspace-mvp/workspace.sqlite3
+Restart=on-failure
+RestartSec=5
+UMask=0077
+Environment=PYTHONDONTWRITEBYTECODE=1
+MemoryMax=128M
+CPUQuota=50%
+TasksMax=32
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_INET6
+CapabilityBoundingSet=
+
+[Install]
+WantedBy=multi-user.target
