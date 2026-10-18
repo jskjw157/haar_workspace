@@ -55,6 +55,6 @@ Subject: two ends of a simple short graphite cable, an ivory plug and a cobalt-e
 - desktop/mobile 및 빈 목록·검토·AI 화면 캡처를 직접 열어 작은 크기의 조화·내용 가독성·기존 표 밀도를 검토했다. 실기 iPhone/VoiceOver 감사는 수행하지 않았다.
 - 브라우저 harness의 offscreen lazy image decode 대기는 검사 시에만 eager로 전환하고 제한 시간을 두어 해결했다. 제품의 lazy loading 정책은 유지했다.
 - 서버 변경은 네 파일의 정적 경로 허용 목록 추가뿐이다. DB/schema·작업/승인/실행 로직은 변경하지 않았다. 신규 release 반영 시 **HAAR 자체 서비스 재시작이 필요**하다. 예전 디자인 배포의 backend 동일성 주장을 이번 변경에 적용하면 안 된다.
-- **이번 변경은 로컬 구현·검증 및 배포 준비까지다. 기존 VPS/3311의 실반영을 확인한 기록은 없다.** 배포한다면 기존 HAAR 경로·서비스만 사용하고 DB 보존·백업·health·이미지 MIME·모바일 확인 후 코드만 교체한다. 다른 봇/전원/방화벽/로그인 설정 변경은 범위가 아니다.
+- 최초 구현 시점에는 로컬 검증·배포 준비까지 완료했고 VPS/3311에는 미반영이었다. **이후 별도 사용자 배포·재시작 승인으로 2026-10-18에 코드 `b925313`을 반영했다.** 실제 백업·DB 보존·health·이미지 경로와 화면 검증은 [배포 기록](ILLUSTRATION_DEPLOYMENT.md)을 기준으로 한다. 다른 봇/전원/방화벽/로그인 설정 변경은 범위가 아니다.
 
 검토 자료: `output/illustrations/desktop.png`, `mobile.png`, `empty-desktop.png`, `review-desktop.png`, `agents-desktop.png`, `agents-mobile.png`, `browser-checks.json`, `assets-manifest.json`. 모두 가상 예시 데이터다. Library 전달용 파일은 별도 manifest로 준비하며 저장·업로드 성공과 구분한다.
