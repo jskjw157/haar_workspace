@@ -38,4 +38,4 @@ CLI `export --proposal-id ID --directory NEW_DIRECTORY`는 candidate.json/candid
 
 테스트는 기존 intake 데이터 보존, 중복·경합·같은 버전 내용 변경·다른 원본·삭제/필드 오류 차단, 제안의 원본 불변, 확장 필드/완료 기준 보존, 동결 export, 원본 새 버전 확인/충돌, 취소·재시작 이력, HTTP CSRF/경로 경계와 화면용 API 상태 변화를 확인한다. 실제 반영 영수증은 별도 기록한다.
 
-구현·테스트·운영 반영 상태는 [검증 기록](REGISTER_SYNC_VERIFICATION.md)을 확인한다. 운영 배포는 별도 승인 대기이며, 로컬 검증과 구분한다.
+구현·테스트·운영 반영 상태는 [검증 기록](REGISTER_SYNC_VERIFICATION.md)을 확인한다. 사용자 승인 후 운영에 반영했으며, Library 상시 자동 동기화와는 구분한다.
