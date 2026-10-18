@@ -66,6 +66,10 @@ const iconPaths = {
   file:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8zM14 2v6h6M8 13h8m-8 4h5"/>'
 };
 function icon(name) { return `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconPaths[name] || iconPaths.file}</svg>`; }
+function emptyIllustration() {
+  const name = state.view === 'review' ? 'review' : 'empty';
+  return `<img class="workspace-art empty-art" src="/illustrations/${name}.webp" width="112" height="112" alt="" aria-hidden="true" loading="lazy" decoding="async">`;
+}
 function sampleBadge(r) { return r.sample ? '<span class="sample-label">가상 예시</span>' : ''; }
 function priority(r) { return `<span class="priority ${r.priority.toLowerCase()}"><span class="priority-bars" aria-hidden="true"><i></i><i></i><i></i></span>${r.priority}</span>`; }
 function stage(r) { return `<span class="stage ${r.intake_stage}"><i aria-hidden="true"></i>${stageLabels[r.intake_stage]}</span>`; }
@@ -92,7 +96,7 @@ function render() {
   if (state.view === 'review') visible = records.filter(r => r.intake_stage === 'review');
   visible.sort((a,b) => a.priority.localeCompare(b.priority) || (a.deadline || '9999').localeCompare(b.deadline || '9999'));
   $('#list-count').textContent = visible.length;
-  $('#record-list').innerHTML = visible.length ? visible.map(row).join('') : `<div class="empty-state">${icon("list")}<strong>${state.view === 'review' ? '검토를 기다리는 결과가 없어요' : '작업을 위한 여백이 생겼어요'}</strong><p>${state.view === 'review' ? '항목을 열고 결과 링크를 등록해 보세요.' : '새 작업을 정리하거나 예시 항목으로 시작해 보세요.'}</p></div>`;
+  $('#record-list').innerHTML = visible.length ? visible.map(row).join('') : `<div class="empty-state illustrated-empty">${emptyIllustration()}<strong>${state.view === 'review' ? '검토를 기다리는 결과가 없어요' : '작업을 위한 여백이 생겼어요'}</strong><p>${state.view === 'review' ? '항목을 열고 결과 링크를 등록해 보세요.' : '새 작업을 정리하거나 예시 항목으로 시작해 보세요.'}</p></div>`;
   const pct = active.length ? Math.round(reviewed / active.length * 100) : 0;
   $('#progress-percent').textContent = pct + '%';
   $('#progress-ring').style.setProperty('--progress', pct + '%');

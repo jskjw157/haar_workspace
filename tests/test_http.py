@@ -53,6 +53,13 @@ class HTTPTests(unittest.TestCase):
         self.assertIn(b'HAAR',body)
         self.assertEqual(self.request('GET','/../server.py')[0],404)
         self.assertEqual(self.request('GET','/.data/workspace.sqlite3')[0],404)
+        for name in ('focus', 'empty', 'review', 'connection'):
+            status, image_headers, image = self.request('GET',f'/illustrations/{name}.webp')
+            self.assertEqual(status,200)
+            self.assertEqual(image_headers['Content-Type'],'image/webp')
+            self.assertEqual(image[:4],b'RIFF')
+        self.assertEqual(self.request('GET','/illustrations/../server.py')[0],404)
+        self.assertEqual(self.request('GET','/illustrations/unknown.webp')[0],404)
 
     def test_unknown_and_oversized_requests_not_accepted(self):
         self.assertEqual(self.request('POST','/api/execute',{'idempotency_key':'no-execution'})[0],404)

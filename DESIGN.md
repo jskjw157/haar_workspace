@@ -184,6 +184,10 @@ The dark desktop rail uses icon-and-label rows. Hover lightens the row; selectio
 
 Focus rows lead with a stable ordinal, priority bars and a readable task title, followed by the next action and metadata. A selectable pin remains a real button with a pressed state. The work list repeats the same task language in aligned columns, then reflows on mobile. Priority and stage retain text labels in addition to their visual marks. Review progress is a slim linear track whose copy identifies manual result review, not AI execution.
 
+## Illustrations
+
+Small matte-paper illustrations add a little warmth to focus selection, empty lists, result review and disconnected execution routes. Use the four local transparent WebP assets in `app/static/illustrations/`; ivory, graphite and a restrained action-blue accent connect them to the existing console. They are decorative: empty alt text, `aria-hidden="true"`, fixed dimensions and no interaction. Keep work rows, status labels and controls free of decorative images. Do not imply completion, approval or a live connection through an illustration. Load secondary images lazily; keep the four served files below 40 KB combined. See `docs/ILLUSTRATIONS.md` for generation prompts and verification.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -197,4 +201,4 @@ Focus rows lead with a stable ordinal, priority bars and a readable task title, 
 
 - **Don't** imply running AI, dispatch or external approval through status styling.
 - **Don't** add decorative hero treatments, repeated badges or a circular progress display to this console.
-- **Don't** add external fonts, imagery or a second decorative action accent.
+- **Don't** add external fonts, remote image dependencies or a second decorative action accent. Keep imagery within the four local illustrations and their documented placements.

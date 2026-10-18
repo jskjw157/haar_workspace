@@ -290,6 +290,8 @@ class Handler(BaseHTTPRequestHandler):
                 local_date = parse_qs(path.query).get("date", [date.today().isoformat()])[0]
                 return self.send(200, self.server.store.snapshot(local_date))
             files = {"/": ("index.html", "text/html; charset=utf-8"), "/app.js": ("app.js", "text/javascript; charset=utf-8"), "/style.css": ("style.css", "text/css; charset=utf-8"), "/favicon.svg": ("favicon.svg", "image/svg+xml")}
+            for name in ("focus", "empty", "review", "connection"):
+                files[f"/illustrations/{name}.webp"] = (f"illustrations/{name}.webp", "image/webp")
             if path.path not in files:
                 raise Problem("not_found", "페이지를 찾을 수 없습니다", 404)
             filename, content_type = files[path.path]
