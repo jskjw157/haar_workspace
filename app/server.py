@@ -12,6 +12,7 @@ import re
 import sqlite3
 import uuid
 from urllib.parse import urlsplit
+from app.register import Register, RegisterError
 
 ROOT = Path(__file__).parent
 ROUTES = [
@@ -289,7 +290,10 @@ class Handler(BaseHTTPRequestHandler):
                 from urllib.parse import parse_qs
                 local_date = parse_qs(path.query).get("date", [date.today().isoformat()])[0]
                 return self.send(200, self.server.store.snapshot(local_date))
+            if path.path == "/api/register":
+                return self.send(200, self.server.register.snapshot())
             files = {"/": ("index.html", "text/html; charset=utf-8"), "/app.js": ("app.js", "text/javascript; charset=utf-8"), "/style.css": ("style.css", "text/css; charset=utf-8"), "/favicon.svg": ("favicon.svg", "image/svg+xml")}
+            files.update({"/register": ("register.html", "text/html; charset=utf-8"), "/register.js": ("register.js", "text/javascript; charset=utf-8"), "/register.css": ("register.css", "text/css; charset=utf-8")})
             for name in ("focus", "empty", "review", "connection"):
                 files[f"/illustrations/{name}.webp"] = (f"illustrations/{name}.webp", "image/webp")
             for name in ("today", "all", "review", "agents"):
@@ -298,7 +302,7 @@ class Handler(BaseHTTPRequestHandler):
                 raise Problem("not_found", "페이지를 찾을 수 없습니다", 404)
             filename, content_type = files[path.path]
             self.send(200, (ROOT / "static" / filename).read_bytes(), content_type)
-        except Problem as e:
+        except (Problem, RegisterError) as e:
             self.send(e.status, {"error": {"code": e.code, "message": e.message}})
         except Exception:
             self.send(500, {"error": {"code": "server_error", "message": "조회에 실패했습니다. 잠시 후 새로고침하세요"}})
@@ -312,11 +316,17 @@ class Handler(BaseHTTPRequestHandler):
             if length < 2 or length > 16384:
                 raise Problem("body_limit", "요청은 16KB 이내여야 합니다", 413)
             data = json.loads(self.rfile.read(length))
+            if self.path in ("/api/register/proposals", "/api/register/cancel"):
+                return self.send(200, self.server.register.command("propose" if self.path.endswith("proposals") else "cancel", data))
+            if self.path == "/api/register/export":
+                if not isinstance(data, dict):
+                    raise Problem("invalid_json", "JSON 객체를 입력하세요", 400)
+                return self.send(200, self.server.register.export(data.get("proposal_id")))
             operation = {"/api/records": "create", "/api/focus": "focus", "/api/demo": "demo", "/api/records/edit": "edit", "/api/artifacts": "artifact", "/api/reviews": "review", "/api/handoffs": "handoff"}.get(self.path)
             if not operation:
                 raise Problem("not_found", "요청 경로를 확인하세요", 404)
             return self.send(200, self.server.store.command(operation, data))
-        except Problem as e:
+        except (Problem, RegisterError) as e:
             self.send(e.status, {"error": {"code": e.code, "message": e.message}})
         except (ValueError, json.JSONDecodeError):
             self.send(400, {"error": {"code": "invalid_json", "message": "올바른 JSON 요청을 사용하세요"}})
@@ -328,6 +338,7 @@ def build_server(path, port=3310):
     server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
     server.daemon_threads = True
     server.store = Store(path)
+    server.register = Register(path)
     return server
 
 
