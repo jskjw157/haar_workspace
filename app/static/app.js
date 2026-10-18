@@ -114,7 +114,12 @@ function setView(view, rerender = true) {
   state.view = view;
   const labels = {today:'오늘의 작업', all:'모든 항목', review:'결과 검토', agents:'AI 작업실'};
   const titles = {today:'오늘의 작업', all:'모든 항목', review:'결과 검토', agents:'AI 작업실'};
+  const descriptions = {today:'우선순위를 정하고, 중요한 일부터 이어가세요.', all:'흩어진 작업과 자료를 한곳에 모아 살펴보세요.', review:'결과의 버전과 내용을 확인하고, 다음 수정을 정하세요.', agents:'작업을 맡길 경로와 지침을 살펴보세요. 실행은 아직 미연결입니다.'};
   $('#page-label').textContent = labels[view]; $('#page-title').textContent = titles[view];
+  $('#page-description').textContent = descriptions[view];
+  $('.workspace-hero').dataset.menu = view;
+  const hero = $('#menu-hero-art'), heroPath = `/banners/${view}.webp`;
+  if (hero.getAttribute('src') !== heroPath) hero.setAttribute('src', heroPath);
   document.title = labels[view] + ' · HAAR Workspace';
   $$('.nav-item').forEach(n => { n.classList.toggle('active', n.dataset.view === view); n.setAttribute('aria-current', n.dataset.view === view ? 'page' : 'false'); });
   $('#agents-view').hidden = view !== 'agents'; $('#today-view').hidden = view === 'agents';

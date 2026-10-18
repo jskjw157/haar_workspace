@@ -1,32 +1,49 @@
 ---
 name: HAAR Workspace
-description: A quiet operational console for visible work and honest connection states.
+description: A bright, soft fashion and jewelry work studio with honest draft and connection states.
 colors:
-  bg: "#f5f6f8"
-  surface: "#ffffff"
-  rail: "#181b22"
-  text: "#1b202b"
-  secondary: "#505a6c"
-  muted: "#647084"
-  line: "#e1e5ec"
-  line-strong: "#c8ced8"
-  hover: "#f1f4f9"
-  primary: "#2855d9"
-  primary-hover: "#1c43b9"
-  primary-soft: "#edf2ff"
-  error: "#b23d32"
-  error-soft: "#fff0ed"
-  warning: "#956114"
-  warning-soft: "#fff5e1"
-  success: "#267349"
-  success-soft: "#eaf6ee"
+  "bg": "#faf7f5"
+  "surface": "#fffdfb"
+  "rail": "#f0e6e5"
+  "text": "#382b35"
+  "secondary": "#67525e"
+  "muted": "#715e69"
+  "line": "#e6dadd"
+  "line-strong": "#9c8390"
+  "hover": "#f4ecee"
+  "primary": "#78455c"
+  "primary-hover": "#63374b"
+  "primary-active": "#532d3f"
+  "primary-soft": "#f0e1e7"
+  "error": "#a43f3b"
+  "error-soft": "#fbece8"
+  "warning": "#865b21"
+  "warning-soft": "#faf0df"
+  "success": "#466b56"
+  "success-soft": "#e9f0e8"
+  "on-primary": "#fffdfb"
+  "rail-hover": "#e8d9df"
+  "rail-count": "#916579"
+  "studio-rose": "#f2e5e7"
+  "studio-sage": "#e9eee7"
+  "studio-cream": "#f4eee3"
+  "studio-lilac": "#ece7f0"
+  "avatar": "#eee4e8"
+  "track": "#e8dbe1"
+  "neutral-dot": "#88737f"
+  "warning-line": "#c1a370"
+  "error-line": "#c28d80"
+  "inset": "#f6efed"
+  "toast": "#47313e"
+  "scrim": "#382b3570"
+  "shadow": "#382b3525"
 typography:
   headline:
     fontFamily: "-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif"
     fontSize: "2rem"
-    fontWeight: 700
+    fontWeight: 650
     lineHeight: 1.25
-    letterSpacing: "-.035em"
+    letterSpacing: "-.025em"
   title:
     fontFamily: "-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif"
     fontSize: "16px"
@@ -37,7 +54,7 @@ typography:
     fontFamily: "-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif"
     fontSize: "13px"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.8
     letterSpacing: "-.015em"
   label:
     fontFamily: "-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif"
@@ -45,10 +62,16 @@ typography:
     fontWeight: 400
     lineHeight: 1.5
     letterSpacing: "-.015em"
+  field:
+    fontFamily: "-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Noto Sans KR',sans-serif"
+    fontSize: "14px"
+    fontWeight: 400
+    lineHeight: 1.6
+    letterSpacing: "-.015em"
 rounded:
-  sm: "6px"
-  md: "8px"
-  lg: "12px"
+  "sm": "6px"
+  "md": "8px"
+  "lg": "12px"
 spacing:
   "1": "4px"
   "2": "8px"
@@ -60,15 +83,23 @@ spacing:
 components:
   button-primary:
     backgroundColor: "{colors.primary}"
-    textColor: "{colors.surface}"
-    rounded: "{rounded.sm}"
+    textColor: "{colors.on-primary}"
+    rounded: "{rounded.md}"
     padding: "9px 15px"
   button-primary-hover:
     backgroundColor: "{colors.primary-hover}"
+  button-primary-active:
+    backgroundColor: "{colors.primary-active}"
+  button-new-task:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
+    rounded: "{rounded.md}"
+    padding: "9px 15px"
+    height: "44px"
   button-secondary:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.secondary}"
-    rounded: "{rounded.sm}"
+    rounded: "{rounded.md}"
     padding: "9px 15px"
   button-text:
     textColor: "{colors.secondary}"
@@ -78,8 +109,12 @@ components:
     rounded: "{rounded.sm}"
     padding: "10px 12px"
   nav-item:
+    textColor: "{colors.secondary}"
     rounded: "{rounded.sm}"
     padding: "11px 12px"
+  nav-item-active:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
   filter-active:
     textColor: "{colors.primary}"
     padding: "8px 12px"
@@ -90,103 +125,121 @@ components:
     backgroundColor: "{colors.surface}"
     rounded: "{rounded.lg}"
     padding: "22px"
+  menu-banner:
+    backgroundColor: "{colors.studio-rose}"
+    rounded: "{rounded.lg}"
+    width: "100%"
+    height: "clamp(240px,26vw,340px)"
 ---
 
 # Design System: HAAR Workspace
 
 ## Overview
 
-**Creative North Star: "The quiet work console"**
+**Creative North Star: "The soft work studio"**
 
-The quiet work console makes operational reading immediate: a dark navigation rail frames a cool neutral canvas, while white grouped surfaces and fine rules organize dense information. Blue identifies actions and selection; text hierarchy and alignment carry the rest.
+The soft work studio brings HAAR’s fashion and jewelry context into operational work: warm porcelain surrounds a light rose sidebar, warm white surfaces hold dense records, and mulberry marks the next action and current selection. Supporting rose, cream, sage and lilac grounds give the four menu illustrations a coherent home.
 
-The component system uses native interface typography, restrained curves and flat surfaces. Connection and draft labels remain explicit, so a polished presentation never implies an AI adapter is running or a draft has been dispatched.
+Native Korean interface typography, fine warm rules and restrained curves keep priorities, evidence and next actions legible. Decorative generated illustrations orient the workspace without replacing labels or suggesting real products, running agents or completed external actions. Connection and draft states remain explicit.
 
 **Key Characteristics:**
 
-- Dark rail with cool neutral content.
-- One blue action accent with semantic status colors.
-- Ranked focus rows and aligned work metadata.
-- Flat surfaces, visible focus and responsive reflow.
+- Bright porcelain, rose and warm white surfaces throughout the interface.
+- Mulberry actions, selection, hover and visible keyboard focus.
+- Large full-width menu imagery alongside preserved small paper studies.
+- Dense ranked work rows, native Korean type and responsive reflow.
 
 ## Colors
 
-Action blue sits against cool whites and dark ink. The frontmatter preserves the exact shared CSS values. Sidecar tonal ramps are synthesized preview metadata, not additional colors used by the application.
+The palette is warm, bright and softly rose-toned, with readable plum text and a single mulberry action family. Frontmatter records the exact shared CSS values; synthesized sidecar tonal ramps are preview metadata, not extra application colors.
 
 ### Primary
 
-- **Action Blue** (`primary`): primary buttons, active filters, selected focus pins, links and the review progress bar.
-- **Pressed / Hover Blue** (`primary-hover`): primary-button hover.
-- **Selection Mist** (`primary-soft`): selected controls and mobile navigation.
+- **Mulberry / Deep Mulberry / Pressed Mulberry** (`primary`, `primary-hover`, `primary-active`): primary actions, active desktop navigation, links, filter selection and keyboard focus.
+- **Rose Selection / Warm On-Action** (`primary-soft`, `on-primary`): selected pins, mobile selection and text on mulberry.
+
+### Secondary
+
+- **Studio Rose / Cream / Sage / Lilac** (`studio-rose`, `studio-cream`, `studio-sage`, `studio-lilac`): the today, all-items, review and AI-workspace banner grounds respectively. Sage also grounds agent-card avatars.
 
 ### Neutral
 
-- **Cool Canvas / White Surface** (`bg`, `surface`): page ground and grouped content.
-- **Graphite Rail / Ink** (`rail`, `text`): desktop navigation and primary reading.
-- **Slate / Muted Slate** (`secondary`, `muted`): supporting copy and metadata, with their hierarchy preserved.
-- **Fine Rule / Field Rule / Hover Wash** (`line`, `line-strong`, `hover`): row separation, input boundaries and interaction feedback.
+- **Porcelain / Warm White / Rose Rail** (`bg`, `surface`, `rail`): page canvas, grouped content and the desktop sidebar.
+- **Plum Ink / Supporting Plum / Muted Plum** (`text`, `secondary`, `muted`): reading hierarchy, including placeholders and metadata.
+- **Warm Rule / Field Rule / Rose Hover** (`line`, `line-strong`, `hover`): subtle separation, meaningful field boundaries and interactive feedback.
+- **Rail Hover / Count Rose / Avatar / Track / Neutral Dot / Inset** (`rail-hover`, `rail-count`, `avatar`, `track`, `neutral-dot`, `inset`): component support tones.
+- **Toast / Scrim / Shadow** (`toast`, `scrim`, `shadow`): transient and modal layers.
 
-Error and warning pairs identify blocked work, overdue dates and uncertain saving. Success pairs identify reviewed or archived states; these are semantic colors, not additional decorative accents. Rail-specific text and selected-navigation tones remain component-local CSS values.
+Error and warning pairs indicate blocked, overdue or uncertain-save states; success pairs indicate reviewed or archived states. The corresponding line tokens support warning and error banners. These meanings remain distinct from the decorative menu colors.
 
-**The Action Blue Rule.** Use blue for actions, selection and review emphasis; reserve warning, error and success colors for their stated status.
+**The Mulberry Action Rule.** Use mulberry for actions, selection and focus; keep warning, error and success colors tied to their stated meanings.
+
+**The Instant Selection Rule.** Navigation selection changes without a color transition, preserving readable foreground and background pairs throughout the menu switch.
 
 ## Typography
 
-**Interface Font:** the native sans-serif stack in the frontmatter. No downloadable font or separate display family is used. The stack adapts to the host platform; Korean fallbacks are named, not fetched.
+**Interface Font:** the native sans-serif stack in the frontmatter, with named Korean fallbacks. No downloadable font or separate display face is used.
 
-The hierarchy is compact and task-oriented. The page heading uses the headline role; section headings use title. Introductory copy uses body, and dense metadata uses label. Individual task titles are (15px, 600), row titles (13px, 550), and next actions (12px). These are implemented component roles, not an invented proportional scale.
+The final page heading uses the headline role (650, 2rem, 1.25), becoming (25px) on mobile. Section headings use title (650, 16px), becoming (15px) on mobile. Introductory copy uses body (13px, 1.8), becoming (12px) on mobile. Label describes dense metadata (11px). Task titles use (15px, 600), record titles (13px, 550), and next actions (12px). Counts and dates use tabular numerals.
 
-The page heading becomes (27px) on mobile, section headings (15px), and form fields (16px) to retain comfortable mobile entry. Counts and dates use tabular numerals. Default interface tracking is slightly tight; labels retain sentence case. Supporting text commonly uses (11–12px), and explanatory paragraphs use line heights of (1.7–1.8). Form notes cap at (75ch).
+Form fields use the field role on desktop and become (16px) on mobile for comfortable entry. Supporting explanations use line heights (1.7–1.8); form notes cap at (75ch). Native interface text carries the hierarchy; the Latin HAAR wordmark remains a restrained brand detail.
 
 ## Layout
 
-Desktop uses a fixed rail (216px), a white top bar (64px) and a content area capped at (1536px), with page padding (36px 40px 22px). The primary grid places work beside a supporting column (264px), separated by (32px). A four-column summary precedes the work area. The spacing primitives are the actual shared CSS scale; component-local measurements remain local.
+Desktop has a fixed light sidebar (216px), a warm white top bar (64px), and main content capped at (1536px) with padding (36px 40px 22px). The work/support grid uses a supporting column (264px) and gap (32px). Four summary columns precede the work area. Shared spacing follows the frontmatter scale; component-local measurements remain local.
 
-The focus group is a single bordered list with numbered rows rather than separate floating cards. Work rows align a pin, flexible title, state (94px), AI (85px) and deadline (61px), with gaps (12px). The title column can shrink and wrap.
+Each of the four menu views places its title, description and visible new-task CTA above a separate full-width banner. The banner is (100%) of the content width and (clamp(240px,26vw,340px)) high on desktop; at the mobile breakpoint it is (210px) high. The source scenes are (720 × 480), rendered with contain, centered positioning and a (1.08) scale within the clipped banner. No text overlaps the detailed image. The new-task CTA has a minimum height (44px) at every width. At narrow widths the introduction stacks while preserving this order.
 
-At (1200px) and below the rail narrows to (196px) and the content tightens. At (1000px) and below the support column moves beneath the work in two columns. At (760px) and below navigation becomes four bottom tabs, the top bar is (54px), content padding is (26px 20px 20px), and work rows stack status, AI and deadline below their title. The final mobile rules give controls minimum targets of (44px). Bottom navigation and toasts account for safe-area insets. At (350px) and below the introduction and form grid stack. At (1600px) and above content padding widens and the support column becomes (290px).
+The focus group is one bordered numbered list. Desktop work rows align a pin, flexible title, status (94px), AI (85px) and deadline (61px), separated by (12px). Titles can shrink and wrap.
+
+At (1200px) and below the sidebar narrows to (196px) and content tightens. At (1000px) and below support moves beneath work in two columns. At (760px) and below navigation becomes four bottom tabs, top bar becomes (54px), content padding becomes (26px 20px 20px), work metadata stacks, and fields and mobile controls use minimum targets (44px). Bottom navigation and toasts account for safe-area insets. At (350px) and below the introduction and form grid stack. At (1600px) and above content padding and the support column widen.
 
 ## Elevation & Depth
 
-Borders, white surfaces and the darker rail establish depth without shadows on work panels. Toasts use (`0 5px 16px #18203325`); dialogs use (`0 20px 70px #18203330`) with a translucent backdrop (`#18203370`). These exact overlay values also live in the sidecar.
+Working surfaces are flat, distinguished by warm tonal layers and fine borders. Shadow is reserved for a toast and the modal editor; the backdrop uses the scrim token. There are no floating card shadows.
+
+### Shadow Vocabulary
+
+- **Toast:** `0 5px 16px var(--color-shadow)` for transient feedback.
+- **Dialog:** `0 20px 70px var(--color-shadow)` for the modal editor.
 
 **The Flat Work Rule.** Keep working surfaces flat; reserve shadows for dialogs and transient notifications.
 
 ## Shapes
 
-Controls and fields use the small radius, avatars and inset result blocks use the medium radius, and focus groups, agent cards and dialogs use the large radius. Fine (1px) borders define containers and fields. Status indicators are small circles; priority uses three rising bars plus a text label. Filter controls use an underline rather than pill silhouettes. The small outlined sample label is reserved for actual sample records.
+Gently curved controls and fields use the shared small radius; primary and secondary buttons use the medium radius. Focus groups, agent cards, dialogs and menu banners use the large radius. Avatars and nested evidence surfaces use the medium radius; compact tags retain local (3–4px) corners. Fine one-pixel borders separate records and group related content. Status dots stay small and circular; they never resemble an active heartbeat.
 
 ## Components
 
 ### Buttons
 
-Compact, direct controls. Primary buttons use Action Blue, white text and the small radius, with the exact padding in the frontmatter. Hover darkens the fill; active uses the component-local pressed blue (`#16389e`). Secondary buttons use white, a strong border and slate text; hover uses the neutral wash. Text buttons pair a label with an optional inline SVG. Disabled buttons use muted text and the hover wash. Keyboard focus is a blue (3px) outline offset (3px).
+Mulberry primary actions use warm on-action text, medium corners and padding (9px 15px); hover and pressed states use the corresponding deeper tokens. The header new-task action is at least (44px) high at all widths; other desktop primary and secondary actions are at least (40px), rising to (44px) on mobile. Secondary actions use warm white, a field-rule border and supporting plum. Text actions use supporting plum and become mulberry on hover. Disabled controls use muted text, hover wash and a fine rule.
 
-State transitions are (160ms ease-out) for background, color and border color, only when reduced motion is not requested. There is no entrance animation.
+Buttons, links and expandable summaries have a (3px) mulberry focus outline offset by (3px). Non-navigation controls transition background, color and border color over (160ms ease-out) only under `prefers-reduced-motion: no-preference`.
 
-### Chips
+### Chips and status labels
 
-Filters are flat text tabs with a (2px) bottom border. Selection uses blue text and underline with stronger weight; hover darkens text. Tags are quieter compact status or sample annotations, not repeated decoration.
+Filters are text tabs with an active mulberry underline (2px). Hover uses the warm hover wash. Labels retain explicit status text beside a dot; review is warning, blocked is error, and archived is success. Neutral tags use the hover wash; content-confirmed tags use success colors. Styling never implies that an execution adapter is connected.
 
 ### Cards / Containers
 
-Focus groups and agent cards use white surfaces, fine borders and the large radius. Focus rows have internal separators and the padding in the frontmatter; agent cards use their own recorded padding. Supporting panels use bottom rules instead of enclosing cards. Result and handoff blocks use a subtle neutral inset with medium corners. Cards do not lift on hover.
+Focus lists group numbered rows within a large-radius warm white container. Row hover uses the shared hover wash. Agent cards use warm white, fine borders, large corners and padding (22px), becoming (20px) on mobile. Evidence and handoff blocks use the inset tone and medium corners. Summary and support panels use spacing and rules instead of floating-card elevation.
 
 ### Inputs / Fields
 
-White fields use a strong neutral border, small corners and the recorded padding, with a minimum height (42px). Focus replaces the visible border with a blue (2px) outline offset (1px). Placeholder text uses muted slate. Mobile fields are at least (44px) high. Error and uncertain-save banners use semantic soft backgrounds, a border and explanatory text; they remain separate from field styling.
+Warm white fields have a one-pixel field-rule border, small corners, padding (10px 12px), and a minimum height (42px) on desktop. Mobile fields use padding (10px), font size (16px) and minimum height (44px). Placeholders use muted plum at full opacity. Focus uses a (2px) mulberry outline offset by (1px), with the border transparent. Carets use mulberry.
 
 ### Navigation
 
-The dark desktop rail uses icon-and-label rows. Hover lightens the row; selection uses a muted blue rail fill with pale text. Counts are compact and subordinate. On mobile, the rail becomes white bottom navigation with blue-soft selection and no counts. Icons use the shipped inline SVG vocabulary: no icon font or Unicode pictogram substitution.
+The bright rose sidebar uses supporting plum idle labels, warm rail-hover feedback, and a solid mulberry active item with warm on-action text. Active counts use count rose. Selection is immediate (`transition: none`), avoiding transient low-contrast color interpolation. Navigation targets are at least (44px) high on desktop. Mobile tabs use warm white, muted idle labels, and rose-selection/mulberry active pairing; each item is at least (52px) high. The active menu is also exposed by `aria-current`.
 
-### Ranked Focus and Work Rows
+### Ranked focus and work rows
 
-Focus rows lead with a stable ordinal, priority bars and a readable task title, followed by the next action and metadata. A selectable pin remains a real button with a pressed state. The work list repeats the same task language in aligned columns, then reflows on mobile. Priority and stage retain text labels in addition to their visual marks. Review progress is a slim linear track whose copy identifies manual result review, not AI execution.
+Stable ordinals, priority bars, task titles and next actions organize the focus group. Pins retain a real pressed state; priority and stage retain text labels. The slim linear progress track describes manual result-link review, never AI execution. Current records are pre-Paperclip intake drafts, manual artifact reviews and handoff notes; the disconnected labels must remain visible.
 
-## Illustrations
+### Menu banners and small paper studies
 
-Small matte-paper illustrations add a little warmth to focus selection, empty lists, result review and disconnected execution routes. Use the four local transparent WebP assets in `app/static/illustrations/`; ivory, graphite and a restrained action-blue accent connect them to the existing console. They are decorative: empty alt text, `aria-hidden="true"`, fixed dimensions and no interaction. Keep work rows, status labels and controls free of decorative images. Do not imply completion, approval or a live connection through an illustration. Load secondary images lazily; keep the four served files below 40 KB combined. See `docs/ILLUSTRATIONS.md` for generation prompts and verification.
+The existing four-menu switch updates the view title, description, banner source and matching background together. Real generated assets are `app/static/banners/today.webp`, `all.webp`, `review.webp` and `agents.webp`: planning, organized work/materials, draft inspection and disconnected execution workstations. These are decorative (`alt=""`, hidden from assistive technology), not product photographs or execution evidence. Preserve the existing focus, review, connection and empty-state illustrations under `app/static/illustrations/`; small studies stay with section orientation and empty states rather than individual data rows. No autoplay or decorative live-state animation is introduced.
 
 ## Do's and Don'ts
 
@@ -194,11 +247,13 @@ Small matte-paper illustrations add a little warmth to focus selection, empty li
 
 - **Do** keep priority, title, status, assigned AI and deadline easy to scan.
 - **Do** preserve explicit draft, sample and disconnected labels.
-- **Do** use the existing inline stroke SVGs and visible keyboard focus.
-- **Do** reflow rows into stacked metadata and move navigation to the bottom on mobile.
+- **Do** place each menu’s full-width banner below its title and new-task action; keep the action at least 44px high.
+- **Do** use the native Korean font stack, inline stroke SVG controls and visible keyboard focus.
+- **Do** reflow work rows into stacked metadata and move navigation to the bottom on mobile.
 
 ### Don't:
 
-- **Don't** imply running AI, dispatch or external approval through status styling.
-- **Don't** add decorative hero treatments, repeated badges or a circular progress display to this console.
-- **Don't** add external fonts, remote image dependencies or a second decorative action accent. Keep imagery within the four local illustrations and their documented placements.
+- **Don't** restore the dark navigation rail or blue admin palette.
+- **Don't** imply running AI, automatic dispatch, external publishing or external approval through styling or illustrations.
+- **Don't** place text over the detailed banner image or turn decorative artwork into product evidence.
+- **Don't** add external fonts, remote UI dependencies or autoplay motion.

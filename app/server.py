@@ -292,6 +292,8 @@ class Handler(BaseHTTPRequestHandler):
             files = {"/": ("index.html", "text/html; charset=utf-8"), "/app.js": ("app.js", "text/javascript; charset=utf-8"), "/style.css": ("style.css", "text/css; charset=utf-8"), "/favicon.svg": ("favicon.svg", "image/svg+xml")}
             for name in ("focus", "empty", "review", "connection"):
                 files[f"/illustrations/{name}.webp"] = (f"illustrations/{name}.webp", "image/webp")
+            for name in ("today", "all", "review", "agents"):
+                files[f"/banners/{name}.webp"] = (f"banners/{name}.webp", "image/webp")
             if path.path not in files:
                 raise Problem("not_found", "페이지를 찾을 수 없습니다", 404)
             filename, content_type = files[path.path]
