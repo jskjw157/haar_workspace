@@ -16,7 +16,7 @@
 
 - 운영 코드: `4f7a5428d06f8f5d1d33afd825bbbd667ea2f2e0`. 릴리스 사전 Python 42개 테스트 통과와 변경 허용 파일 SHA 검사를 완료했다. 공통 CSS·홈 JavaScript·이미지·기존 백업 코드는 바뀌지 않았다.
 - SQLite 일관 백업 후 기존 11개 테이블의 스키마/행/user_version 해시가 배포 전후 동일했다: `03e66daabbd2e0e39889ebe5d8d9ea0a84f2dd3ba12ee691bdedc6a421ead888`. 정상 worker heartbeat의 `last_seen_at`만 비교에서 명시적으로 정규화했다. 그 외 필드·대장 전체 내용은 보존했다.
-- `note_pages`/`note_commands` 두 테이블과 작업 인덱스만 추가했다. 기존 작업대장은 revision 10/28건이며 실제 작업의 우선순위·승인·완료 기준은 그대로다.
+- `note_pages`/`note_commands` 두 테이블과 작업 인덱스만 추가했다. 배포 직후 작업대장은 revision 10/28건이었다. 이후 아래 실제 운영 검증 관측을 기존 outbox 경로로 반영해 revision 11이 됐으며, 실제 작업의 우선순위·승인·완료 기준은 그대로다.
 - `haar-workspace-mvp` 단일 서비스만 재시작했다. health 정상·dispatch 비활성, DynamicUser/ProtectSystem strict/ProtectHome yes/MemoryMax 128MiB/TasksMax 32·unit 파일 유지. 다른 VPS 서비스와 정지된 전체 디자인 작업은 변경하지 않았다.
 - 실제 작업에 연결한 사실 기반 운영 메모 1개를 HTTP로 저장하고 새 연결에서 재조회했다. 외부 브라우저가 revision 3을 자동 저장하고 별도 모바일 브라우저 컨텍스트가 같은 본문을 복원했다. 작업대장 문서는 이 노트 저장 전후 동일했다. 개인 노트 본문과 페이지 ID는 공개 Git에 넣지 않는다.
 
@@ -43,3 +43,5 @@
 [Caddy Basic Auth](https://caddyserver.com/docs/caddyfile/directives/basic_auth), [reload·hash-password](https://caddyserver.com/docs/command-line), [reverse_proxy](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy)의 공식 계약을 확인했다.
 
 증거는 X9 Pro 비공개 `output/notes/`에 보존한다. 배포 영수증·실제 HTTP 노트 재조회·`external/access-proof.json`·`external/browser-proof.json`·외부 데스크톱/모바일 캡처·Caddy 백업/변경 영수증이다. 비밀번호·개인 DB·실제 화면은 공개 Git에서 제외한다.
+
+2026-10-19 12:43:52 UTC에는 완료한 노트/외부 접근 운영 검증을 HAAR-020의 새 실제 관측으로 X9 JSON에 작성하고 enqueue만 했다. 기존 worker가 수동 flush 없이 VPS revision 11로 반영했다. 완료 상태는 유지하고 허용된 설명·확인 시각만 갱신했다. 이는 노트 편집이나 다른 AI 대화를 자동 수집한 결과가 아니다.
