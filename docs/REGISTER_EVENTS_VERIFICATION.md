@@ -20,3 +20,17 @@
 worker와 SSH 터널은 이번 실행에서 동작하는 프로세스다. 새 로그인/부팅 자동 실행 설정·키·OAuth·영구 권한은 만들지 않았다. Mac 종료/재부팅이나 helper 종료 후에는 기존 터널과 문서의 watch 명령을 다시 실행해야 한다. 대기열은 X9 Pro에 남고 90초 접촉 지연은 화면에서 확인할 수 있다. 외장이 없으면 내장으로 대체하지 않는다.
 
 실제 원본·행 내용·캡처·private queue·상세 영수증은 공개 Git에 없다. X9 Pro의 `repo/output/events/`에 배포 영수증, 테스트 로그, `live-auto-update.json`, `production-ui-evidence.json`을 보관한다. 백업과 이전 VPS 코드 릴리스도 보존한다.
+
+## 자동 구간과 부모의 필수 입력
+
+| 단계 | 현재 동작 | 자동 여부 |
+| --- | --- | --- |
+| 초기 출처 | 확인한 Library JSON v8, 28건. 원본을 자동 감시하지 않음 | 최초 안전 import만 수행 |
+| 실제 관측 기록 | 부모가 상태와 근거·확인 시각을 검증하고 X9 JSON 작성 후 `app.publisher enqueue --file ...` | 부모의 명시적 기록 동작 필요 |
+| 전송 | X9 SQLite outbox를 worker가 확인, 기존 SSH API로 전송·지수 재시도·409 보류 | enqueue 이후 자동 |
+| 중앙 저장 | VPS에서 revision/작업 해시/확인 시각을 검사하고 원장·영수증·감사 이력 원자 저장 | 수신 후 자동 |
+| 화면 반영 | 5초 revision/cursor 조회, 변경 시 대장 재조회와 입력 보존 | 화면이 열린 동안 자동 |
+
+실제 검증 작업은 HAAR-020 한 건이다. 2026-10-19 11:36:34 UTC에 실행 확인 관측이 revision 9로, 11:38:01 UTC에 완료 검증 관측이 revision 10으로 반영됐다. 같은 열린 문서의 timeOrigin과 표식을 유지해 수동 새로고침이 없음을 확인했다. 이 시각은 작업 변경 성공 시각이며 이후 30초 heartbeat와 구분한다.
+
+부모가 Library나 대화에만 상태를 적고 enqueue하지 않으면 이 경로로 반영되지 않는다. 다른 GPT/dot/AI 런타임 관측, Library 상시 수집과 부모 도구 호출의 자동 후킹은 미연결이다. 화면 폴링만을 전체 자동 추적으로 표현하지 않는다. Mac 재부팅·worker 중단 뒤 watch/기존 SSH 터널 재실행도 수동이다.
