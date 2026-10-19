@@ -13,6 +13,7 @@ import sqlite3
 import uuid
 from urllib.parse import urlsplit
 from app.register import Register, RegisterError
+from app.notes import Notes
 
 ROOT = Path(__file__).parent
 ROUTES = [
@@ -290,11 +291,19 @@ class Handler(BaseHTTPRequestHandler):
                 from urllib.parse import parse_qs
                 local_date = parse_qs(path.query).get("date", [date.today().isoformat()])[0]
                 return self.send(200, self.server.store.snapshot(local_date))
+            if path.path == "/api/notes":
+                from urllib.parse import parse_qs
+                query = parse_qs(path.query)
+                return self.send(200, self.server.notes.list(query.get("task_id", [""])[0], query.get("q", [""])[0]))
+            if path.path == "/api/notes/page":
+                from urllib.parse import parse_qs
+                return self.send(200, self.server.notes.page(parse_qs(path.query).get("page_id", [""])[0]))
             if path.path == "/api/register/revision":
                 return self.send(200, self.server.register.revision())
             if path.path == "/api/register":
                 return self.send(200, self.server.register.snapshot())
             files = {"/": ("index.html", "text/html; charset=utf-8"), "/app.js": ("app.js", "text/javascript; charset=utf-8"), "/style.css": ("style.css", "text/css; charset=utf-8"), "/favicon.svg": ("favicon.svg", "image/svg+xml")}
+            files.update({"/notes": ("notes.html", "text/html; charset=utf-8"), "/notes.js": ("notes.js", "text/javascript; charset=utf-8"), "/notes-state.js": ("notes-state.js", "text/javascript; charset=utf-8"), "/notes.css": ("notes.css", "text/css; charset=utf-8")})
             files.update({"/register": ("register.html", "text/html; charset=utf-8"), "/register.js": ("register.js", "text/javascript; charset=utf-8"), "/register.css": ("register.css", "text/css; charset=utf-8")})
             for name in ("focus", "empty", "review", "connection"):
                 files[f"/illustrations/{name}.webp"] = (f"illustrations/{name}.webp", "image/webp")
@@ -315,9 +324,12 @@ class Handler(BaseHTTPRequestHandler):
             if self.headers.get("Content-Type") != "application/json":
                 raise Problem("content_type", "JSON 요청만 허용합니다", 415)
             length = int(self.headers.get("Content-Length", "0"))
-            if length < 2 or length > 16384:
-                raise Problem("body_limit", "요청은 16KB 이내여야 합니다", 413)
+            notes_request = self.path in ("/api/notes/pages", "/api/notes/save")
+            if length < 2 or length > (262144 if notes_request else 16384):
+                raise Problem("body_limit", "노트 요청은 256KiB 이내여야 합니다" if notes_request else "요청은 16KB 이내여야 합니다", 413)
             data = json.loads(self.rfile.read(length))
+            if self.path in ("/api/notes/pages", "/api/notes/save"):
+                return self.send(200, self.server.notes.command("create" if self.path.endswith("pages") else "save", data))
             if self.path == "/api/register/events":
                 return self.send(200, self.server.register.apply_event(data))
             if self.path == "/api/register/heartbeat":
@@ -345,6 +357,7 @@ def build_server(path, port=3310):
     server.daemon_threads = True
     server.store = Store(path)
     server.register = Register(path)
+    server.notes = Notes(path)
     return server
 
 

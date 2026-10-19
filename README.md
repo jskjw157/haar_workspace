@@ -6,9 +6,11 @@
 
 **현재 상태: M0 작업 정리 체험판.** SELLAYER와 별도 프로젝트입니다. Today 보드·초안 영속 저장·집중 3개·우선순위/마감·수동 결과 검토·인계 기록이 동작합니다. Paperclip 원장, Buzz 채팅, AI 자동 실행은 미연결입니다. 기존 문서는 사용자 승인된 전체 제품 설계이며, 아래 체험판의 현재 구현 범위와 구분합니다.
 
-[중앙 작업대장 연결](docs/REGISTER_SYNC.md)은 Library JSON 확인본의 안전 import, `/register` 조회·60초 화면 갱신, 버전 기반 반영 대기 제안과 JSON/MD 내보내기를 제공합니다. VPS의 Library 상시 자동 수집·양방향 자동 반영은 미연결입니다. 기존 디자인 수정 정지와 별도 변경이며 새 인증·실행 권한을 추가하지 않습니다. [운영 반영 검증](docs/REGISTER_SYNC_VERIFICATION.md)과 접속 범위를 확인하세요.
+[중앙 작업대장 연결](docs/REGISTER_SYNC.md)은 초기 Library JSON 확인본의 안전 import와 반영 대기 제안으로 시작했습니다. 현재는 아래 부모 이벤트 모드가 운영 원본과 5초 화면 갱신을 맡습니다. Library 상시 자동 수집·다른 AI 실행 관찰은 미연결입니다. 초기 단계의 [운영 반영 검증](docs/REGISTER_SYNC_VERIFICATION.md)과 현재 이벤트 계약을 구분합니다.
 
 [부모 변경 이벤트 자동 갱신](docs/REGISTER_EVENTS.md): 부모가 확인한 변경을 외장 outbox에 기록하면 기존 SSH API로 자동 전송하고 화면이 5초 내 revision을 감지합니다. 첫 이벤트 이후 VPS 대장이 단일 운영 원본이며 Library는 초기 출처입니다. 다른 AI 실행의 독립 수집·Library 상시 수집은 미연결입니다.
+
+[작업별 공유 노트](docs/TASK_NOTES.md): 독립 블록·슬래시·하위 페이지·체크·표·검색, VPS 자동 저장과 실패/충돌·재접속 복원을 제공합니다. 전체 디자인 변경이나 작업 실행 기능과는 별개입니다.
 
 ## 바로 실행
 
@@ -24,7 +26,7 @@ python3 -m app.server --port 3310
 ssh -N -L 127.0.0.1:3311:127.0.0.1:3310 vps
 ```
 
-터널 연결 후 [VPS 작업실](http://127.0.0.1:3311) 접속. 실제 iPhone 원격 접속에는 별도 인증된 접근 경로가 필요하며 아직 제공하지 않습니다.
+터널 연결 후 [VPS 작업실](http://127.0.0.1:3311) 접속. 승인 후 연결한 [로그인 보호 외부 작업대장](https://workspace.76.13.212.135.sslip.io/register)은 iPhone에서도 같은 HTTPS 주소로 접속합니다. 전용 로그인·암호 확인 방법과 실제 검증 범위는 [노트 운영 검증](docs/TASK_NOTES_VERIFICATION.md)을 확인하세요.
 
 [실행·운영 안내](docs/MVP_RUNBOOK.md)와 [검증 기록](docs/MVP_VERIFICATION.md)에서 실제 설치 점검 결과, 기능 경계, 보안, 백업, 테스트와 후속 차단 사항을 확인합니다. Paperclip은 확인한 VPS 경로에서 서버를 찾지 못했고 Buzz는 중지 상태라 기존 서비스·데이터를 변경하지 않았습니다. 이 체험판은 Paperclip 등록 전 초안을 보관하며 별도 실행 scheduler나 task 상태 원장을 만들지 않습니다.
 
