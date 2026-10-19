@@ -83,6 +83,8 @@ class Register:
                     exported_at TEXT, candidate TEXT
                 );
                 CREATE UNIQUE INDEX IF NOT EXISTS register_one_pending ON register_proposals(task_id) WHERE state='pending';
+                CREATE TABLE IF NOT EXISTS register_stream (singleton INTEGER PRIMARY KEY CHECK(singleton=1), library_version INTEGER NOT NULL, last_seen_at TEXT NOT NULL, pending INTEGER NOT NULL, blocked INTEGER NOT NULL);
+                CREATE TABLE IF NOT EXISTS register_deliveries (source_event_id TEXT PRIMARY KEY, idempotency_key TEXT UNIQUE NOT NULL, digest TEXT NOT NULL, receipt TEXT NOT NULL);
                 CREATE TABLE IF NOT EXISTS register_commands (key TEXT PRIMARY KEY, digest TEXT NOT NULL, receipt TEXT NOT NULL);
                 CREATE TABLE IF NOT EXISTS register_events (id INTEGER PRIMARY KEY, kind TEXT NOT NULL, task_id TEXT, body TEXT NOT NULL, occurred_at TEXT NOT NULL);
             """)
@@ -119,6 +121,7 @@ class Register:
                 db.execute("BEGIN IMMEDIATE")
                 old = self.current(db)
                 require(not old or old["library_id"] == library_id, "source_conflict", "다른 Library 원본으로 교체할 수 없습니다", 409)
+                require(not db.execute("SELECT 1 FROM register_stream").fetchone(), "event_source_active", "운영 원본은 부모 이벤트입니다. Library import로 덮어쓸 수 없습니다", 409)
                 current_version = old["version"] if old else 0
                 if old and version == current_version:
                     require(digest == old["digest"], "version_conflict", "같은 Library 버전의 내용이 다릅니다", 409)
@@ -154,9 +157,25 @@ class Register:
             events = [dict(e) for e in db.execute("SELECT * FROM register_events ORDER BY id DESC LIMIT 50")]
             for e in events:
                 e["body"] = json.loads(e["body"])
+            from app.register_events import source_status
+            bridge = source_status(db, current)
             document = json.loads(current["document"]) if current else None
             warnings = [{"task_id": t["id"], "field": "verification_basis", "message": "원본에 확인 근거가 미기록되어 있습니다"} for t in document["tasks"] if not t.get("verification_basis") and not t.get("evidence")] if document else []
-            return {"source": {**state, "digest": current["digest"] if current else None, "imported_at": current["imported_at"] if current else None, "automatic_library_refresh": False, "bridge": "authorized_consumer_import", "stale": bool(state["last_error"])}, "document": document, "warnings": warnings, "proposals": proposals, "events": events, "fetched_at": timestamp(), "dispatched": False}
+            return {"source": {**state, "digest": current["digest"] if current else None, "imported_at": current["imported_at"] if current else None, "automatic_library_refresh": False, "bridge": "authorized_consumer_import", **bridge, "stale": bool(state["last_error"] or bridge.get("publisher_offline") or bridge.get("pending_delivery") or bridge.get("blocked_delivery"))}, "document": document, "warnings": warnings, "proposals": proposals, "events": events, "fetched_at": timestamp(), "dispatched": False}
+
+    def apply_event(self, data):
+        from app.register_events import apply_event
+        return apply_event(self, data)
+
+    def heartbeat(self, data):
+        from app.register_events import heartbeat
+        return heartbeat(self, data)
+
+    def revision(self):
+        with self.db() as db:
+            from app.register_events import source_status
+            current = self.current(db)
+            return {"revision": current["version"] if current else 0, "cursor": db.execute("SELECT COALESCE(MAX(id),0) FROM register_events").fetchone()[0], **source_status(db,current)}
 
     def command(self, operation, data):
         require(isinstance(data, dict), "invalid_json", "JSON 객체가 필요합니다", 400)
@@ -204,6 +223,7 @@ class Register:
     def export(self, proposal_id):
         with self.db() as db:
             db.execute("BEGIN IMMEDIATE")
+            require(not db.execute("SELECT 1 FROM register_stream").fetchone(), "event_source_active", "부모 이벤트 원본의 제안은 부모가 검토해야 합니다. Library 후보 내보내기는 중지됐습니다", 409)
             current = self.current(db)
             p = db.execute("SELECT * FROM register_proposals WHERE id=?", (proposal_id,)).fetchone()
             require(current and p and p["state"] == "pending" and p["base_version"] == current["version"], "source_conflict", "원본이 바뀌었거나 유효한 반영 대기 제안이 아닙니다", 409)

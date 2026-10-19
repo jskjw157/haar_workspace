@@ -17,3 +17,6 @@ Python standard library server, vanilla HTML/CSS/JavaScript, SQLite. No new fron
 
 ## Source of truth
 Full product: docs/PRD.md. Current capability and safety boundary: docs/MVP_RUNBOOK.md. This file condenses existing confirmed requirements, not new inferred product claims.
+
+## Parent event delivery
+The requested automatic path uses parent observations, a durable X9 Pro outbox and the existing localhost SSH API. After the first event, VPS register revisions are the single operational truth; Library is baseline provenance, not a polled live source. Browser change detection, bounded retries, idempotency, conflicts and publisher contact are separate from actual task verification. No new auth, persistent permission or design change. See docs/REGISTER_EVENTS.md.

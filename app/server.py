@@ -290,6 +290,8 @@ class Handler(BaseHTTPRequestHandler):
                 from urllib.parse import parse_qs
                 local_date = parse_qs(path.query).get("date", [date.today().isoformat()])[0]
                 return self.send(200, self.server.store.snapshot(local_date))
+            if path.path == "/api/register/revision":
+                return self.send(200, self.server.register.revision())
             if path.path == "/api/register":
                 return self.send(200, self.server.register.snapshot())
             files = {"/": ("index.html", "text/html; charset=utf-8"), "/app.js": ("app.js", "text/javascript; charset=utf-8"), "/style.css": ("style.css", "text/css; charset=utf-8"), "/favicon.svg": ("favicon.svg", "image/svg+xml")}
@@ -316,6 +318,10 @@ class Handler(BaseHTTPRequestHandler):
             if length < 2 or length > 16384:
                 raise Problem("body_limit", "요청은 16KB 이내여야 합니다", 413)
             data = json.loads(self.rfile.read(length))
+            if self.path == "/api/register/events":
+                return self.send(200, self.server.register.apply_event(data))
+            if self.path == "/api/register/heartbeat":
+                return self.send(200, self.server.register.heartbeat(data))
             if self.path in ("/api/register/proposals", "/api/register/cancel"):
                 return self.send(200, self.server.register.command("propose" if self.path.endswith("proposals") else "cancel", data))
             if self.path == "/api/register/export":

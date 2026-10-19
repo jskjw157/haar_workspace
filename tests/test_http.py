@@ -78,6 +78,12 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(first[2],second[2])
         self.assertFalse(json.loads(first[2])['dispatched'])
 
+    def test_parent_events_keep_same_origin_and_body_limits(self):
+        for path in ('/api/register/events','/api/register/heartbeat'):
+            self.assertEqual(self.request('POST',path,{},origin='https://evil.example')[0],403)
+            self.assertEqual(self.request('POST',path,{'payload':'a'*17000})[0],413)
+        self.assertEqual(self.request('GET','/api/register/revision')[0],200)
+
     def test_register_boundary_and_empty_source(self):
         status,headers,body=self.request('GET','/api/register')
         self.assertEqual(status,200);self.assertIsNone(json.loads(body)['document']);self.assertFalse(json.loads(body)['source']['automatic_library_refresh'])

@@ -1,3 +1,7 @@
+# 현재 자동 전달 경로
+
+부모 변경 이벤트 자동 전달을 구현했다. 현재 운영 원본 전환·대기열·재시도·오프라인·부모 실행 계약은 [REGISTER_EVENTS.md](REGISTER_EVENTS.md)를 우선 적용한다. 첫 이벤트 이후 아래 Library 단일 원본/import 절차는 초기 자료/과거 방식 설명이다. Library 상시 자동 수집은 제공하지 않는다.
+
 # Library 작업대장과 Workspace 연결
 
 ## 상태 기준과 실제 지원 범위
