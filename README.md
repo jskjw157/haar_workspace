@@ -8,6 +8,8 @@
 
 [중앙 작업대장 연결](docs/REGISTER_SYNC.md)은 Library JSON 확인본의 안전 import, `/register` 조회·60초 화면 갱신, 버전 기반 반영 대기 제안과 JSON/MD 내보내기를 제공합니다. VPS의 Library 상시 자동 수집·양방향 자동 반영은 미연결입니다. 기존 디자인 수정 정지와 별도 변경이며 새 인증·실행 권한을 추가하지 않습니다. [운영 반영 검증](docs/REGISTER_SYNC_VERIFICATION.md)과 접속 범위를 확인하세요.
 
+[부모 변경 이벤트 자동 갱신](docs/REGISTER_EVENTS.md): 부모가 확인한 변경을 외장 outbox에 기록하면 기존 SSH API로 자동 전송하고 화면이 5초 내 revision을 감지합니다. 첫 이벤트 이후 VPS 대장이 단일 운영 원본이며 Library는 초기 출처입니다. 다른 AI 실행의 독립 수집·Library 상시 수집은 미연결입니다.
+
 ## 바로 실행
 
 Python 3.12 이상, 추가 패키지 없음.
