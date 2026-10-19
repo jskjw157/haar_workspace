@@ -39,7 +39,9 @@ function field(form,name,label,value,multiline=false) {
 }
 function renderTask(task) {
   const article=el('article',undefined,'register-task');article.dataset.taskId=task.id;
+  const notesLink=el('a','작업 노트 열기');notesLink.href='/notes?task='+encodeURIComponent(task.id);
   article.id=task.id;article.append(el('span',task.id+' · '+task.status,'tag neutral'),el('h2',task.task_name),el('p',task.status_detail));if(task.priority_proposal)article.append(el('p','우선순위: '+task.priority_proposal+(task.priority_reason?' · '+task.priority_reason:'')));
+  article.append(notesLink);
   const dl=el('dl');for(const [label,value] of [['최신 지시',task.latest_instruction],['다음 행동',task.next_action],['블로커',task.blocker||'기록 없음'],['완료 기준',task.completion_criteria],['마지막 확인',dateText(task.last_verified_at)],['확인 근거',task.verification_basis||task.evidence?JSON.stringify(task.verification_basis||{evidence:task.evidence}):'원본에 미기록 · 확인 필요'],['담당 작업',task.owner_task_id||'미확인'],['결과 Library ID',(task.result_library_ids||[]).join(', ')||'기록 없음']])dl.append(el('dt',label),el('dd',value));const facts=el('details');facts.append(el('summary','근거·블로커·완료 기준'),dl);article.append(facts);
   for(const p of board.proposals.filter(p=>p.task_id===task.id)) {
     const box=el('section',undefined,'register-proposal');box.append(el('strong','제안 '+p.state+' · 원본 v'+p.base_version),el('p',p.changes.status+' · '+p.changes.status_detail),el('p','Library 원본 반영 '+(p.state==='confirmed'?'확인':'미확인')+' · 실제 실행 권한 없음'));

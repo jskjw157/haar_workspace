@@ -20,3 +20,6 @@ Full product: docs/PRD.md. Current capability and safety boundary: docs/MVP_RUNB
 
 ## Parent event delivery
 The requested automatic path uses parent observations, a durable X9 Pro outbox and the existing localhost SSH API. After the first event, VPS register revisions are the single operational truth; Library is baseline provenance, not a polled live source. Browser change detection, bounded retries, idempotency, conflicts and publisher contact are separate from actual task verification. No new auth, persistent permission or design change. See docs/REGISTER_EVENTS.md.
+
+## Task notes
+The user requested an independently implemented MakerNote-like task editor with paragraph/heading/check/table blocks, slash commands, child pages and search. Stable register task IDs link notes to VPS SQLite storage behind the existing authenticated SSH boundary. Autosave failure keeps tab input, revision conflict stops overwrite, and reconnect reads the saved server version. This is separate from task execution and the paused global redesign. No original tutorial code, localStorage canonical store, new credential or public exposure is included.
