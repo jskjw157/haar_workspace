@@ -80,3 +80,5 @@ worker는 30초마다 접촉·전송 대기/충돌 건수를 heartbeat로 보낸
 `GET /api/register/revision`은 revision/cursor/연결 메타데이터만 돌려준다. 화면은 5초마다 조회하고 cursor가 바뀌었을 때만 전체 대장을 다시 읽는다. 새로고침 실패 시 기존 렌더를 유지하고 연결 끊김을 표시한다. 입력 중 갱신은 보류되고 저장의 CAS 검사로 오래된 편집을 차단한다.
 
 배포 전 일관 DB 백업을 만든다. 추가 스키마는 register_stream/register_deliveries뿐이며 기존 intake 데이터는 변경하지 않는다. 실패 시 기존 확인본·queue·영수증·백업을 보존한다. 코드 복구 시 DB를 과거 백업으로 자동 덮어쓰지 않는다. Mac helper가 중단돼도 이미 확인된 VPS 원본은 유지된다.
+
+운영 반영과 실제 자동 전달 검증은 [운영 검증 기록](REGISTER_EVENTS_VERIFICATION.md)을 참고한다.
